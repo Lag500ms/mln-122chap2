@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title> thị trường &amp; người tiêu dùng – Hiện tượng nhất thời hay bản chất xã hội?</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Theme variables ---------- */
+    :root{
+      --bg-dark: #0f1724;
+      --glass-bg: rgba(12,17,23,0.5);
+      --glass-border: rgba(255,255,255,0.06);
+      --card-bg: #111827;
+      --muted: #9aa4b2;
+      --text: #eef2f7;
+      --accent-blue: #2563eb;
+      --accent-purple: #6d28d9;
+      --accent-yellow: #facc15;
+      --accent-red: #ef4444;
+      --link: #38bdf8; /* cyan-blue for legible links */
+      --glass-blur: 8px;
+      --shadow-strong: 0 8px 30px rgba(2,6,23,0.6);
+      --reveal-duration: 0.7s; /* subtle 0.6-0.8s */
+      --stagger-step: 0.08s;
+    }
+
+    /* ---------- Global ---------- */
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-dark);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+      scroll-behavior: smooth;
+    }
+
+    a { color: var(--link); text-decoration:none; }
+    a:hover { color: var(--accent-yellow); text-decoration:underline; }
+
+    /* ---------- Header (Glass) ---------- */
+    header.app-header{
+      position: sticky;
+      top:0;
+      z-index:1200;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 28px;
+      background: linear-gradient(180deg, rgba(8,10,14,0.55), rgba(8,10,14,0.45));
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      backdrop-filter: blur(var(--glass-blur));
+      transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.25s ease;
+    }
+    header.app-header.scrolled{
+      box-shadow: var(--shadow-strong);
+      background: linear-gradient(180deg, rgba(8,10,14,0.68), rgba(8,10,14,0.6));
+      transform: translateY(0);
+    }
+
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand .logo {
+      display:flex;
+      width:40px;
+      height:40px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      color: var(--accent-yellow);
+      font-size:20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4) inset;
+    }
+    .brand .title {
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      font-size:1.05rem;
+      color:var(--text);
+      line-height:1;
+    }
+    .brand .subtitle { font-size:0.76rem; color:var(--muted); margin-top:2px; }
+
+    nav.primary {
+      display:flex;
+      gap:26px;
+      align-items:center;
+    }
+    nav.primary a {
+      position:relative;
+      padding:6px 2px;
+      color:var(--text);
+      font-weight:600;
+      font-size:0.95rem;
+      opacity:0.95;
+      transition: color .18s ease;
+      text-decoration: none; /* ensure no permanent underline */
+    }
+    /* animated underline */
+    nav.primary a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      height:3px;
+      width:0%;
+      background: linear-gradient(90deg,var(--accent-yellow),var(--accent-blue));
+      border-radius:3px;
+      transition: width .28s cubic-bezier(.2,.9,.2,1);
+      opacity:0.95;
+    }
+    nav.primary a:hover::after{ width:100%; }
+    nav.primary a:focus{ outline:2px solid rgba(255,255,255,0.06); outline-offset:4px; }
+
+    /* ---------- Hamburger (mobile) ---------- */
+    .hamburger {
+      display:none;
+      width:42px;
+      height:42px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      cursor:pointer;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .hamburger .bar{
+      width:20px;height:2px;background:var(--text);position:relative;border-radius:2px;
+    }
+    .hamburger .bar::after, .hamburger .bar::before{
+      content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); border-radius:2px;
+    }
+    .hamburger .bar::before{ top:-6px }
+    .hamburger .bar::after{ top:6px }
+
+    /* Mobile nav panel */
+    .mobile-panel{
+      position:fixed;
+      inset:0 0 auto 0;
+      top:64px;
+      left:0;
+      right:0;
+      background: linear-gradient(180deg, rgba(8,10,14,0.96), rgba(8,10,14,0.98));
+      padding:20px;
+      display:none;
+      z-index:1150;
+    }
+    .mobile-panel a{ display:block; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.03); color:var(--text); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position:relative;
+      overflow:hidden;
+      padding: 64px 24px 44px;
+      background: linear-gradient(120deg, rgba(37,99,235,0.12), rgba(107,33,168,0.12));
+    }
+    .hero-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding: 36px;
+    }
+
+    /* animated background layers */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at 10% 20%, rgba(42, 211, 230, 0.04), transparent 10%),
+                  radial-gradient(circle at 90% 80%, rgba(250, 204, 21, 0.03), transparent 12%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* shifting gradient blob layer using keyframes */
+    .bg-animation{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(109,40,217,0.12));
+      mix-blend-mode: screen;
+      filter: blur(40px);
+      transform: translateX(-8%);
+      animation: moveGrad 12s linear infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes moveGrad {
+      from{ transform: translateX(-8%) translateY(0) scale(1); }
+      to{ transform: translateX(8%) translateY(-6%) scale(1.05); }
+    }
+
+    /* Left column content */
+    .hero .left {
+      position:relative;
+      z-index:2;
+      color:var(--text);
+    }
+    .hero .left h1{
+      margin:0 0 14px 0;
+      font-family:'Montserrat',sans-serif;
+      font-size:2.6rem;
+      line-height:1.02;
+      font-weight:800;
+      letter-spacing:-0.5px;
+    }
+    .hero .left h1 .highlight-yellow{ color:var(--accent-yellow); }
+    .hero .left h1 .highlight-red{ color:var(--accent-red); }
+    .hero .left p { margin:0 0 18px 0; color:rgba(239,246,255,0.92); max-width:58ch; font-size:1.05rem; opacity:0.95; }
+
+    .cta-wrap { display:flex; gap:14px; align-items:center; margin-top:8px; }
+    .btn-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius:12px;
+      color:#fff;
+      font-weight:700;
+      background: linear-gradient(90deg,var(--accent-blue), var(--accent-purple));
+      box-shadow: 0 8px 30px rgba(37,99,235,0.18);
+      border:none;
+      cursor:pointer;
+      transform: translateZ(0);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-cta:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(37,99,235,0.24); }
+    .btn-cta .icon { font-size:1.05rem; }
+
+    /* Scroll cue arrow */
+    .scroll-cue{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:22px;
+    }
+    .scroll-cue .arrow{
+      width:36px; height:36px; border-radius:50%;
+      background: linear-gradient(90deg,var(--accent-blue), var(--accent-purple));
+      display:grid; place-items:center; color:#fff;
+      animation: bounce 1.6s infinite;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      cursor:pointer;
+      border:none;
+    }
+    @keyframes bounce {
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(10px); }
+      100%{ transform: translateY(0); }
+    }
+
+    /* Right column - decorative blob */
+    .hero .illustration {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index:2;
+    }
+    .blob {
+      width:360px;
+      max-width:100%;
+      filter: drop-shadow(0 20px 40px rgba(13,20,40,0.6));
+      transform-origin:center;
+      transition: transform .36s cubic-bezier(.2,.9,.2,1);
+    }
+    .blob:hover{ transform: translateY(-8px) rotate(-2deg) scale(1.02); }
+
+    /* ---------- Main content container (keeps previous layout) ---------- */
+    .container {
+      max-width:1100px;
+      margin: 28px auto;
+      padding: 0 20px 80px;
+      display:grid;
+      grid-template-columns: 1fr 260px;
+      gap:24px;
+    }
+    @media (max-width:1024px){
+      .hero-inner { grid-template-columns: 1fr; text-align:left; }
+      .container { grid-template-columns: 1fr; }
+      .hero { padding:40px 18px; }
+    }
+
+    /* Section cards (preserve existing text exactly) */
+    section.card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:22px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    section.card:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 45px rgba(2,6,23,0.72); }
+
+    section.card h2 {
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      font-size:1.15rem;
+      margin-bottom:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .example {
+      background: rgba(250, 204, 21, 0.07);
+      padding:12px;
+      border-left:5px solid var(--accent-yellow);
+      border-radius:8px;
+      margin-top:12px;
+    }
+
+    /* ----- REVEAL + STAGGER styles ----- */
+    /* initial state for direct child elements of section.card */
+    section.card > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity var(--reveal-duration) ease, transform var(--reveal-duration) ease;
+      transition-delay: var(--stagger, 0s);
+      will-change: opacity, transform;
+    }
+
+    /* variant starting transforms */
+    section.card.anim-left > * { transform: translateX(-28px); }
+    section.card.anim-right > * { transform: translateX(28px); }
+    section.card.anim-up > * { transform: translateY(18px); }
+
+    /* when in-view, children go to visible state */
+    section.card.in-view > * {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* small tweak: slight extra pop for heading */
+    section.card.in-view h2 { transform: none; transition-duration: calc(var(--reveal-duration)); }
+
+    /* Sidebar TOC - floating card */
+    aside.toc {
+      position:sticky;
+      top:96px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      height:fit-content;
+    }
+    aside.toc h3 { margin:0 0 10px 0; color:var(--accent-yellow); font-family:'Montserrat',sans-serif; }
+    aside.toc ul{ margin:0; padding:0; list-style:none }
+    aside.toc li{ margin-bottom:10px }
+
+    /* Footer */
+    footer.site-footer{
+      margin-top:40px;
+      padding:30px 18px;
+      background: linear-gradient(180deg, rgba(6,8,10,0.96), rgba(10,12,14,0.98));
+      color:var(--muted);
+      text-align:center;
+      font-size:0.92rem;
+      border-top: 1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Back to top */
+    #backToTop{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      width:46px;height:46px;border-radius:50%;
+      background:var(--accent-blue); color:#fff;
+      border:none; display:none; align-items:center; justify-content:center;
+      font-size:18px; cursor:pointer; box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      z-index:1400;
+    }
+    #backToTop:hover{ background:var(--accent-red); transform:scale(1.05) }
+
+    /* small screens */
+    @media (max-width:720px){
+      .brand .title { font-size:0.95rem; }
+      .brand .subtitle { display:none; }
+      nav.primary { display:none; }
+      .hamburger { display:flex; }
+      .mobile-panel{ display:none; }
+      aside.toc { display:none; }
+    }
+  
+  /* ===== hero layout tweaks: left-aligned scroll cue ===== */
+  .hero .left { display: flex; flex-direction: column; align-items: flex-start; }
+  .cta-wrap { display: flex; gap: 14px; align-items: center; }
+  .scroll-cue { margin-top: 12px; align-self: flex-start; justify-content: flex-start; display: flex; }
+  .scroll-cue .arrow { width:36px; height:36px; border-radius:50%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color:#fff; border:none; cursor:pointer; animation:bounce 1.6s infinite; display:grid; place-items:center; }
+
+  /* ===== premium animated bg layer (keep hero premium) ===== */
+  .bg-animation{ position:absolute; inset:0; z-index:0; background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(109,40,217,0.12)); mix-blend-mode: screen; filter: blur(40px); transform: translateX(-8%); animation: moveGrad 12s linear infinite alternate; pointer-events:none; }
+  @keyframes moveGrad { from{ transform: translateX(-8%) translateY(0) scale(1); } to{ transform: translateX(8%) translateY(-6%) scale(1.05); } }
+  .blob { transition: transform .36s cubic-bezier(.2,.9,.2,1); }
+  .blob:hover { transform: translateY(-8px) rotate(-2deg) scale(1.02); }
+
+  /* mobile: center the arrow on small screens */
+  @media (max-width:720px) {
+    .hero .left { align-items: center; text-align:center; }
+    .cta-wrap { justify-content:center; }
+    .scroll-cue { align-self: center; justify-content:center; }
+  }
+
+  /* nav color + active state */
+  nav.primary a { color: var(--text); transition: color .18s ease; }
+  nav.primary a:hover { color: var(--accent-yellow); }
+  nav.primary a.active { color: var(--accent-yellow); }
+  nav.primary a.active::after { width: 100%; }
+  nav.primary a:focus { outline: 3px solid rgba(250,204,21,0.12); outline-offset:6px; border-radius:4px; }
+
+  </style>
+  <link rel="stylesheet" href="styles/layout-enhance.css">
+</head>
+
+<body>
+  <header class="app-header" id="siteHeader" role="banner">
+    <div class="brand" aria-hidden="false">
+      <div class="logo" aria-hidden="true">📘</div>
+      <div>
+        <div class="title"> Thị trường & Người tiêu dùng</div>
+        <div class="subtitle">Phân tích triết học & xã hội</div>
+      </div>
+    </div>
+
+    <nav class="primary" role="navigation" aria-label="Primary navigation">
+      <a href="index.html">Trang Chủ</a>
+      <a href="lythuyet.html">Lý thuyết</a>
+      <a href="phantich.html">Phân tích</a>
+      <a href="phuluc.html">Phụ lục</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobilePanel" aria-label="Mở menu">
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <div class="mobile-panel" id="mobilePanel" role="dialog" aria-hidden="true">
+    <a href="index.html" onclick="toggleMobile(false)">Trang Chủ</a>
+    <a href="lythuyet.html" onclick="toggleMobile(false)">Lý thuyết</a>
+    <a href="phantich.html" onclick="toggleMobile(false)">Phân tích</a>
+    <a href="index.html#conclusion" onclick="toggleMobile(false)">Kết luận</a>
+    <a href="phuluc.html" onclick="toggleMobile(false)">Phụ lục</a>
+  </div>
+
+  <section class="hero" id="hero" aria-labelledby="heroTitle">
+    <div class="hero-inner">
+      <div class="left" role="region" aria-label="hero content">
+        <div class="breadcrumb">Khung lý thuyết — Chương 2 Kinh tế chính trị Mác–Lênin</div>
+        <h1 id="heroTitle">Khung Lý thuyết về Hàng hoá, Giá trị và Thị trường</h1>
+        <p>Trang này hệ thống hoá những khái niệm cốt lõi trong phân tích Kinh tế chính trị: hàng hoá, giá trị, quan hệ sản xuất và vai trò người tiêu dùng, đồng thời liên hệ tới bối cảnh kinh tế số hiện đại.</p>
+
+        <div class="cta-wrap">
+          <button class="btn-cta" id="startBtn" onclick="document.querySelector('#intro').scrollIntoView({behavior:'smooth'})" aria-label="Bắt đầu khám phá">
+            <span class="icon">📚</span> <span>Bắt đầu khám phá</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="illustration" aria-hidden="true">
+        <svg class="blob" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Decorative illustration">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#60a5fa" stop-opacity="0.85"/>
+              <stop offset="1" stop-color="#a78bfa" stop-opacity="0.85"/>
+            </linearGradient>
+            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="14" result="b"/>
+              <feBlend in="SourceGraphic" in2="b"/>
+            </filter>
+          </defs>
+          <g filter="url(#f1)">
+            <path d="M420 320c36-60 20-140-20-180s-120-40-180-10-110 100-110 160 40 130 100 150 160 10 210-40 20-80 20-80z" fill="url(#g1)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container" role="main">
+      <div>
+        <a id="intro"></a>
+        <section id="intro" class="card" aria-labelledby="introTitle">
+          <h2 id="introTitle">Khung lý luận — Chương 2 Kinh tế chính trị Mác–Lênin</h2>
+          <p>Chương này làm rõ cơ chế hình thành giá trị, vai trò lao động và quan hệ xã hội trong sản xuất — từ đó lý giải sự vận hành của thị trường hiện đại trong điều kiện số hoá.</p>
+          <p>Dựa trên tư tưởng của <i>C.Mác</i> và <i>V.I. Lênin</i>, các khái niệm nền tảng được hệ thống hoá để hiểu mối quan hệ giữa hàng hoá, giá trị, lực lượng sản xuất, quan hệ sản xuất và vai trò người tiêu dùng.</p>
+        </section>
+
+        <a id="goods-value"></a>
+        <section id="sec1" class="card" aria-labelledby="sec1Title">
+          <h2 id="sec1Title">1) Hàng hoá, giá trị sử dụng và giá trị trao đổi</h2>
+          <p>Hàng hoá mang hai thuộc tính:</p>
+          <ul>
+            <li><b>Giá trị sử dụng:</b> công dụng, khả năng thoả mãn nhu cầu</li>
+            <li><b>Giá trị trao đổi:</b> biểu hiện lao động xã hội cần thiết tạo ra hàng hoá</li>
+          </ul>
+          <p>Điểm then chốt của Mác: hàng hoá vừa hữu dụng, vừa phản ánh quan hệ xã hội thông qua lao động kết tinh.</p>
+          <div class="callout">
+            <div class="title">Tư duy quan trọng</div>
+            <div>Giá trị xuất hiện thông qua trao đổi — không trao đổi, không giá trị kinh tế.</div>
+          </div>
+          <p><b>Ví dụ</b>: Ứng dụng miễn phí có giá trị sử dụng cho người dùng; giá trị trao đổi hình thành dựa vào dữ liệu người dùng và khả năng sinh lợi.</p>
+        </section>
+
+        <a id="surplus-value"></a>
+        <section id="sec2" class="card" aria-labelledby="sec2Title">
+          <h2 id="sec2Title">2) Lao động, giá trị và giá trị thặng dư</h2>
+          <p>Lao động tạo ra giá trị. Giá trị thặng dư xuất hiện khi người lao động tạo ra giá trị lớn hơn giá trị sức lao động của chính họ.</p>
+          <p>Đây là nguồn gốc lợi nhuận trong kinh tế tư bản chủ nghĩa.</p>
+          <div class="callout">
+            <div class="title">Công thức</div>
+            <div>Sức lao động → Sản phẩm → Giá trị tổng → (Tiền lương + Giá trị thặng dư)</div>
+          </div>
+          <p><b>Ví dụ kinh tế số</b>: Nền tảng mạng xã hội tận dụng nội dung người dùng miễn phí để tạo doanh thu quảng cáo.</p>
+          <i>Gợi ý đọc:</i> C.Mác – 
+		<a href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener noreferrer">
+  		<i>Tư bản</i>
+		</a>, Quyển I (1867)
+
+        </section>
+
+        <a id="forces-relations"></a>
+        <section id="sec3" class="card" aria-labelledby="sec3Title">
+          <h2 id="sec3Title">3) Lực lượng sản xuất &amp; quan hệ sản xuất</h2>
+          <p>Lực lượng sản xuất (công nghệ, kỹ năng, tri thức) phát triển → tạo áp lực buộc quan hệ sản xuất phải điều chỉnh.</p>
+          <p>Nếu quan hệ sản xuất kìm hãm lực lượng sản xuất → hình thành mâu thuẫn xã hội.</p>
+          <p><b>Ví dụ kinh tế số:</b> AI &amp; tự động hoá thay đổi cấu trúc lao động → yêu cầu điều chỉnh chính sách lao động và sở hữu dữ liệu.</p>
+        </section>
+
+        <a id="value-law"></a>
+        <section id="sec4" class="card" aria-labelledby="sec4Title">
+          <h2 id="sec4Title">4) Quy luật giá trị và giá cả thị trường</h2>
+          <p>Quy luật giá trị chi phối trao đổi hàng hoá theo lao động xã hội cần thiết.</p>
+          <p>Giá cả thị trường dao động quanh giá trị do cạnh tranh, cung–cầu, thông tin và quyền lực thị trường.</p>
+          <p><b>Ví dụ:</b> Thuật toán phân phối hiển thị sản phẩm có thể điều hướng nhu cầu → làm biến động giá trong ngắn hạn.</p>
+        </section>
+
+        <a id="consumer-power"></a>
+        <section id="sec5" class="card" aria-labelledby="sec5Title">
+          <h2 id="sec5Title">5) Vai trò người tiêu dùng</h2>
+          <p>Người tiêu dùng không chỉ là đối tượng mua — họ đóng góp dữ liệu, phản hồi và giá trị nội dung.</p>
+          <p>Quyền lực người tiêu dùng phụ thuộc vào thông tin, lựa chọn thay thế và khả năng tác động đến nhà cung cấp.</p>
+          <p><b>Ví dụ:</b> Người dùng đánh giá, bình chọn, tẩy chay sản phẩm hoặc dịch vụ → ảnh hưởng thị trường.</p>
+        </section>
+
+        <a id="digital-value"></a>
+        <section id="sec6" class="card" aria-labelledby="sec6Title">
+          <h2 id="sec6Title">6) Dữ liệu &amp; giá trị trong kinh tế số</h2>
+          <p>Dữ liệu người dùng trở thành yếu tố sản xuất mới.</p>
+          <p>Giá trị hình thành qua thu thập dữ liệu → phân tích → thương mại hoá.</p>
+          <p><b>Ví dụ hiện đại:</b><br>• TikTok kiểm soát chuỗi: traffic → thanh toán → logistics<br>• Shopee định giá vị trí hiển thị dựa trên dữ liệu hành vi người dùng</p>
+        </section>
+
+        <a id="summary"></a>
+        <section id="conclusion" class="card" aria-labelledby="conclusionTitle">
+          <h2 id="conclusionTitle">Kết luận tóm tắt</h2>
+          <p>Khung lý luận Mác–Lênin giúp giải thích động lực giá trị, quyền lực thị trường và sự chuyển biến quan hệ sản xuất trong thời đại dữ liệu & nền tảng số.</p>
+          <p>Hiểu rõ cơ chế này hỗ trợ đánh giá vai trò người tiêu dùng và xây dựng chính sách phát triển bền vững.</p>
+        </section>
+      </div>
+
+      <aside class="toc" aria-label="Mục lục">
+        <h3>Mục lục</h3>
+        <ul>
+          <li><a href="#intro" onclick="event.preventDefault(); document.querySelector('#intro').scrollIntoView({behavior:'smooth'})">Giới thiệu</a></li>
+          <li><a href="#goods-value" onclick="event.preventDefault(); document.querySelector('#goods-value').scrollIntoView({behavior:'smooth'})">Hàng hoá & Giá trị</a></li>
+          <li><a href="#surplus-value" onclick="event.preventDefault(); document.querySelector('#surplus-value').scrollIntoView({behavior:'smooth'})">Giá trị thặng dư</a></li>
+          <li><a href="#forces-relations" onclick="event.preventDefault(); document.querySelector('#forces-relations').scrollIntoView({behavior:'smooth'})">Lực lượng & Quan hệ sản xuất</a></li>
+          <li><a href="#value-law" onclick="event.preventDefault(); document.querySelector('#value-law').scrollIntoView({behavior:'smooth'})">Quy luật giá trị & Giá cả</a></li>
+          <li><a href="#consumer-power" onclick="event.preventDefault(); document.querySelector('#consumer-power').scrollIntoView({behavior:'smooth'})">Vai trò người tiêu dùng</a></li>
+          <li><a href="#digital-value" onclick="event.preventDefault(); document.querySelector('#digital-value').scrollIntoView({behavior:'smooth'})">Dữ liệu & Kinh tế số</a></li>
+          <li><a href="#summary" onclick="event.preventDefault(); document.querySelector('#summary').scrollIntoView({behavior:'smooth'})">Kết luận</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2025 Nhóm Triết học – Học viện Ngoại giao Việt Nam &mdash;
+    <a href="index.html">Trang Chủ</a> • <a href="phuluc.html">AI Usage</a>
+    <div style="margin-top:8px; color:var(--muted); font-size:0.9rem;">
+      Contact: nhóm Win • Cam kết liêm chính học thuật.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Về đầu trang" aria-label="Về đầu trang">↑</button>
+
+  <script>
+/* =======================
+   Scroll-spy + TOC highlight fix
+   Supports dual-IDs (secX + semantic anchors)
+   ======================= */
+
+const header     = document.getElementById('siteHeader');
+const backToTop  = document.getElementById('backToTop');
+const mobilePanel = document.getElementById('mobilePanel');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+/* map old section ids → new semantic ids */
+const anchorMap = {
+  sec1: "goods-value",
+  sec2: "surplus-value",
+  sec3: "forces-relations",
+  sec4: "value-law",
+  sec5: "consumer-power",
+  sec6: "digital-value",
+  conclusion: "summary"
+};
+
+/* utility: get the canonical anchor id for highlight */
+function resolveAnchor(id){
+  return anchorMap[id] || id;
+}
+
+/* main scroll handler */
+function onScroll(){
+  // header + back to top
+  header.classList.toggle('scrolled', window.scrollY > 30);
+  backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+
+  // determine active section by old IDs
+  const sections = document.querySelectorAll('main section.card');
+  let current = "";
+
+  sections.forEach(sec => {
+    const r = sec.getBoundingClientRect();
+    if(r.top <= 120 && r.bottom > 120){
+      current = resolveAnchor(sec.id);
+    }
+  });
+
+  // highlight TOC
+  document.querySelectorAll('aside.toc a').forEach(a => {
+    const match = a.getAttribute('href') === `#${current}`;
+    a.style.color = match
+      ? getComputedStyle(document.documentElement).getPropertyValue('--accent-yellow')
+      : getComputedStyle(document.documentElement).getPropertyValue('--link');
+  });
+
+  // highlight nav bar if matching hash
+  document.querySelectorAll('nav.primary a').forEach(a => {
+    const href = a.getAttribute('href');
+    if(href === `#${current}`){
+      a.classList.add('active');
+      a.setAttribute('aria-current','page');
+    } else {
+      a.classList.remove('active');
+      a.removeAttribute('aria-current');
+    }
+  });
+}
+
+window.addEventListener('scroll', onScroll);
+window.addEventListener('load', onScroll);
+
+/* back to top */
+backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}) );
+
+/* mobile menu */
+function toggleMobile(open){
+  if(open === undefined) open = mobilePanel.style.display !== 'block';
+  mobilePanel.style.display = open ? 'block' : 'none';
+  hamburgerBtn.setAttribute('aria-expanded', open);
+  mobilePanel.setAttribute('aria-hidden', !open);
+}
+hamburgerBtn.onclick = ()=> toggleMobile();
+document.addEventListener('click', e=>{
+  if(window.innerWidth <= 1024 &&
+     !e.target.closest('.hamburger') &&
+     !e.target.closest('.mobile-panel')){
+    toggleMobile(false);
+  }
+});
+
+/* animate cards reveal */
+const cards = Array.from(document.querySelectorAll('section.card'));
+cards.forEach((card,i)=>{
+  const v = (i%3===0) ? 'anim-up' : (i%3===1?'anim-left':'anim-right');
+  card.classList.add(v);
+  [...card.children].forEach(ch=> ch.style.willChange='opacity,transform');
+});
+const revealObserver = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    const c = entry.target;
+    if(entry.isIntersecting){
+      c.classList.add('in-view');
+      const kids = [...c.children].filter(ch=>ch.tagName && ch.tagName.toLowerCase()!=='script');
+      kids.forEach((ch,i)=> ch.style.setProperty('--stagger', `${i * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))}s`));
+    }else{
+      c.classList.remove('in-view');
+      [...c.children].forEach(ch=> ch.style.setProperty('--stagger','0s'));
+    }
+  });
+},{threshold:.12});
+cards.forEach(c=> revealObserver.observe(c));
+
+/* CTA → first theory section */
+const startBtn = document.getElementById('startBtn');
+if(startBtn){
+  startBtn.onclick = ()=> {
+    document.querySelector('#sec1').scrollIntoView({behavior:'smooth'});
+  };
+}
+</script>
+
+
+  <script src="scripts/ui-enhance.js"></script>
+</body>
+</html>

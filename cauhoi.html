@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thị trường & Người tiêu dùng</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Theme variables ---------- */
+    :root{
+      --bg-dark: #0f1724;
+      --glass-bg: rgba(12,17,23,0.5);
+      --glass-border: rgba(255,255,255,0.06);
+      --card-bg: #111827;
+      --muted: #9aa4b2;
+      --text: #eef2f7;
+      --accent-blue: #2563eb;
+      --accent-purple: #6d28d9;
+      --accent-yellow: #facc15;
+      --accent-red: #ef4444;
+      --link: #38bdf8; /* cyan-blue for legible links */
+      --glass-blur: 8px;
+      --shadow-strong: 0 8px 30px rgba(2,6,23,0.6);
+      --reveal-duration: 0.7s; /* subtle 0.6-0.8s */
+      --stagger-step: 0.08s;
+    }
+
+    /* ---------- Global ---------- */
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-dark);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+      scroll-behavior: smooth;
+    }
+
+    a { color: var(--link); text-decoration:none; }
+    a:hover { color: var(--accent-yellow); text-decoration:underline; }
+
+    /* ---------- Header (Glass) ---------- */
+    header.app-header{
+      position: sticky;
+      top:0;
+      z-index:1200;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:12px 28px;
+      background: linear-gradient(180deg, rgba(8,10,14,0.55), rgba(8,10,14,0.45));
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      backdrop-filter: blur(var(--glass-blur));
+      transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.25s ease;
+    }
+    header.app-header.scrolled{
+      box-shadow: var(--shadow-strong);
+      background: linear-gradient(180deg, rgba(8,10,14,0.68), rgba(8,10,14,0.6));
+      transform: translateY(0);
+    }
+
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand .logo {
+      display:flex;
+      width:40px;
+      height:40px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      color: var(--accent-yellow);
+      font-size:20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4) inset;
+    }
+    .brand .title {
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      font-size:1.05rem;
+      color:var(--text);
+      line-height:1;
+    }
+    .brand .subtitle { font-size:0.76rem; color:var(--muted); margin-top:2px; }
+
+    nav.primary {
+      display:flex;
+      gap:26px;
+      align-items:center;
+    }
+    nav.primary a {
+      position:relative;
+      padding:6px 2px;
+      color:var(--text);
+      font-weight:600;
+      font-size:0.95rem;
+      opacity:0.95;
+      transition: color .18s ease;
+      text-decoration: none; /* ensure no permanent underline */
+    }
+    /* animated underline */
+    nav.primary a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      height:3px;
+      width:0%;
+      background: linear-gradient(90deg,var(--accent-yellow),var(--accent-blue));
+      border-radius:3px;
+      transition: width .28s cubic-bezier(.2,.9,.2,1);
+      opacity:0.95;
+    }
+    nav.primary a:hover::after{ width:100%; }
+    nav.primary a:focus{ outline:2px solid rgba(255,255,255,0.06); outline-offset:4px; }
+
+    /* ---------- Hamburger (mobile) ---------- */
+    .hamburger {
+      display:none;
+      width:42px;
+      height:42px;
+      align-items:center;
+      justify-content:center;
+      border-radius:10px;
+      cursor:pointer;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .hamburger .bar{
+      width:20px;height:2px;background:var(--text);position:relative;border-radius:2px;
+    }
+    .hamburger .bar::after, .hamburger .bar::before{
+      content:""; position:absolute; left:0; width:20px; height:2px; background:var(--text); border-radius:2px;
+    }
+    .hamburger .bar::before{ top:-6px }
+    .hamburger .bar::after{ top:6px }
+
+    /* Mobile nav panel */
+    .mobile-panel{
+      position:fixed;
+      inset:0 0 auto 0;
+      top:64px;
+      left:0;
+      right:0;
+      background: linear-gradient(180deg, rgba(8,10,14,0.96), rgba(8,10,14,0.98));
+      padding:20px;
+      display:none;
+      z-index:1150;
+    }
+    .mobile-panel a{ display:block; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.03); color:var(--text); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position:relative;
+      overflow:hidden;
+      padding: 64px 24px 44px;
+      background: linear-gradient(120deg, rgba(37,99,235,0.12), rgba(107,33,168,0.12));
+    }
+    .hero-inner{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      padding: 36px;
+    }
+
+    /* animated background layers */
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle at 10% 20%, rgba(42, 211, 230, 0.04), transparent 10%),
+                  radial-gradient(circle at 90% 80%, rgba(250, 204, 21, 0.03), transparent 12%);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* shifting gradient blob layer using keyframes */
+    .bg-animation{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(109,40,217,0.12));
+      mix-blend-mode: screen;
+      filter: blur(40px);
+      transform: translateX(-8%);
+      animation: moveGrad 12s linear infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes moveGrad {
+      from{ transform: translateX(-8%) translateY(0) scale(1); }
+      to{ transform: translateX(8%) translateY(-6%) scale(1.05); }
+    }
+
+    /* Left column content */
+    .hero .left {
+      position:relative;
+      z-index:2;
+      color:var(--text);
+    }
+    .hero .left h1{
+      margin:0 0 14px 0;
+      font-family:'Montserrat',sans-serif;
+      font-size:2.6rem;
+      line-height:1.02;
+      font-weight:800;
+      letter-spacing:-0.5px;
+    }
+    .hero .left h1 .highlight-yellow{ color:var(--accent-yellow); }
+    .hero .left h1 .highlight-red{ color:var(--accent-red); }
+    .hero .left p { margin:0 0 18px 0; color:rgba(239,246,255,0.92); max-width:58ch; font-size:1.05rem; opacity:0.95; }
+
+    .cta-wrap { display:flex; gap:14px; align-items:center; margin-top:8px; }
+    .btn-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 18px;
+      border-radius:12px;
+      color:#fff;
+      font-weight:700;
+      background: linear-gradient(90deg,var(--accent-blue), var(--accent-purple));
+      box-shadow: 0 8px 30px rgba(37,99,235,0.18);
+      border:none;
+      cursor:pointer;
+      transform: translateZ(0);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-cta:hover{ transform: translateY(-4px) scale(1.02); box-shadow: 0 12px 40px rgba(37,99,235,0.24); }
+    .btn-cta .icon { font-size:1.05rem; }
+
+    /* Scroll cue arrow */
+    .scroll-cue{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      margin-top:22px;
+    }
+    .scroll-cue .arrow{
+      width:36px; height:36px; border-radius:50%;
+      background: linear-gradient(90deg,var(--accent-blue), var(--accent-purple));
+      display:grid; place-items:center; color:#fff;
+      animation: bounce 1.6s infinite;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      cursor:pointer;
+      border:none;
+    }
+    @keyframes bounce {
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(10px); }
+      100%{ transform: translateY(0); }
+    }
+
+    /* Right column - decorative blob */
+    .hero .illustration {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      z-index:2;
+    }
+    .blob {
+      width:360px;
+      max-width:100%;
+      filter: drop-shadow(0 20px 40px rgba(13,20,40,0.6));
+      transform-origin:center;
+      transition: transform .36s cubic-bezier(.2,.9,.2,1);
+    }
+    .blob:hover{ transform: translateY(-8px) rotate(-2deg) scale(1.02); }
+
+    /* ---------- Main content container (keeps previous layout) ---------- */
+    .container {
+      max-width:1100px;
+      margin: 28px auto;
+      padding: 0 20px 80px;
+      display:grid;
+      grid-template-columns: 1fr 260px;
+      gap:24px;
+    }
+    @media (max-width:1024px){
+      .hero-inner { grid-template-columns: 1fr; text-align:left; }
+      .container { grid-template-columns: 1fr; }
+      .hero { padding:40px 18px; }
+    }
+
+    /* Section cards (preserve existing text exactly) */
+    section.card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:22px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    section.card:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 45px rgba(2,6,23,0.72); }
+
+    section.card h2 {
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;
+      font-size:1.15rem;
+      margin-bottom:10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .example {
+      background: rgba(250, 204, 21, 0.07);
+      padding:12px;
+      border-left:5px solid var(--accent-yellow);
+      border-radius:8px;
+      margin-top:12px;
+    }
+
+    /* ----- REVEAL + STAGGER styles ----- */
+    /* initial state for direct child elements of section.card */
+    section.card > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity var(--reveal-duration) ease, transform var(--reveal-duration) ease;
+      transition-delay: var(--stagger, 0s);
+      will-change: opacity, transform;
+    }
+
+    /* variant starting transforms */
+    section.card.anim-left > * { transform: translateX(-28px); }
+    section.card.anim-right > * { transform: translateX(28px); }
+    section.card.anim-up > * { transform: translateY(18px); }
+
+    /* when in-view, children go to visible state */
+    section.card.in-view > * {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* small tweak: slight extra pop for heading */
+    section.card.in-view h2 { transform: none; transition-duration: calc(var(--reveal-duration)); }
+
+    /* Sidebar TOC - floating card */
+    aside.toc {
+      position:sticky;
+      top:96px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      height:fit-content;
+    }
+    aside.toc h3 { margin:0 0 10px 0; color:var(--accent-yellow); font-family:'Montserrat',sans-serif; }
+    aside.toc ul{ margin:0; padding:0; list-style:none }
+    aside.toc li{ margin-bottom:10px }
+
+    /* Footer */
+    footer.site-footer{
+      margin-top:40px;
+      padding:30px 18px;
+      background: linear-gradient(180deg, rgba(6,8,10,0.96), rgba(10,12,14,0.98));
+      color:var(--muted);
+      text-align:center;
+      font-size:0.92rem;
+      border-top: 1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Back to top */
+    #backToTop{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      width:46px;height:46px;border-radius:50%;
+      background:var(--accent-blue); color:#fff;
+      border:none; display:none; align-items:center; justify-content:center;
+      font-size:18px; cursor:pointer; box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      z-index:1400;
+    }
+    #backToTop:hover{ background:var(--accent-red); transform:scale(1.05) }
+
+    /* small screens */
+    @media (max-width:720px){
+      .brand .title { font-size:0.95rem; }
+      .brand .subtitle { display:none; }
+      nav.primary { display:none; }
+      .hamburger { display:flex; }
+      .mobile-panel{ display:none; }
+      aside.toc { display:none; }
+    }
+  
+  /* ===== hero layout tweaks: left-aligned scroll cue ===== */
+  .hero .left { display: flex; flex-direction: column; align-items: flex-start; }
+  .cta-wrap { display: flex; gap: 14px; align-items: center; }
+  .scroll-cue { margin-top: 12px; align-self: flex-start; justify-content: flex-start; display: flex; }
+  .scroll-cue .arrow { width:36px; height:36px; border-radius:50%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color:#fff; border:none; cursor:pointer; animation:bounce 1.6s infinite; display:grid; place-items:center; }
+
+  /* ===== premium animated bg layer (keep hero premium) ===== */
+  .bg-animation{ position:absolute; inset:0; z-index:0; background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(109,40,217,0.12)); mix-blend-mode: screen; filter: blur(40px); transform: translateX(-8%); animation: moveGrad 12s linear infinite alternate; pointer-events:none; }
+  @keyframes moveGrad { from{ transform: translateX(-8%) translateY(0) scale(1); } to{ transform: translateX(8%) translateY(-6%) scale(1.05); } }
+  .blob { transition: transform .36s cubic-bezier(.2,.9,.2,1); }
+  .blob:hover { transform: translateY(-8px) rotate(-2deg) scale(1.02); }
+
+  /* mobile: center the arrow on small screens */
+  @media (max-width:720px) {
+    .hero .left { align-items: center; text-align:center; }
+    .cta-wrap { justify-content:center; }
+    .scroll-cue { align-self: center; justify-content:center; }
+  }
+
+  /* nav color + active state */
+  nav.primary a { color: var(--text); transition: color .18s ease; }
+  nav.primary a:hover { color: var(--accent-yellow); }
+  nav.primary a.active { color: var(--accent-yellow); }
+  nav.primary a.active::after { width: 100%; }
+  nav.primary a:focus { outline: 3px solid rgba(250,204,21,0.12); outline-offset:6px; border-radius:4px; }
+
+  /* Quiz styling improvements */
+  .quiz-question { margin-bottom: 24px; }
+  .options { list-style: none; padding: 0; margin: 12px 0; }
+  .options li { margin: 8px 0; }
+  .options label { display: block; padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: background 0.2s; }
+  .options label:hover { background: rgba(255,255,255,0.05); }
+  .reveal-btn { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: transform 0.2s; }
+  .reveal-btn:hover { transform: translateY(-2px); }
+  .answer { margin-top: 12px; padding: 10px; background: rgba(250, 204, 21, 0.1); border-left: 4px solid var(--accent-yellow); border-radius: 4px; font-weight: 600; color: var(--accent-yellow); }
+  .hidden { display: none; }
+  #progress { margin-top: 12px; font-weight: 500; color: var(--muted); }
+
+  </style>
+  <link rel="stylesheet" href="styles/layout-enhance.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="app-header" id="siteHeader" role="banner">
+    <div class="brand" aria-hidden="false">
+      <div class="logo" aria-hidden="true">📘</div>
+      <div>
+        <div class="title">Người tiêu dùng đang bị thị trường dẫn dắt hay định hướng thị trường?</div>
+      </div>
+    </div>
+
+    <!-- Primary nav (desktop) -->
+    <nav class="primary" role="navigation" aria-label="Primary navigation">
+      <a href="index.html">Trang Chủ</a>
+      <a href="lythuyet.html">Lý thuyết</a>
+      <a href="phantich.html">Phân tích</a>
+      <a href="phuluc.html">Phụ lục</a>
+    </nav>
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobilePanel" aria-label="Mở menu">
+      <span class="bar"></span>
+    </button>
+  </header>
+
+  <!-- Mobile nav panel -->
+  <div class="mobile-panel" id="mobilePanel" role="dialog" aria-hidden="true">
+    <a href="index.html" onclick="toggleMobile(false)">Trang Chủ</a>
+    <a href="lythuyet.html" onclick="toggleMobile(false)">Lý thuyết</a>
+    <a href="phantich.html" onclick="toggleMobile(false)">Phân tích</a>
+    <a href="index.html#conclusion" onclick="toggleMobile(false)">Kết luận</a>
+    <a href="phuluc.html" onclick="toggleMobile(false)">Phụ lục</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-labelledby="heroTitle">
+    <div class="bg-animation" aria-hidden="true"></div>
+
+    <div class="hero-inner" role="region" aria-label="Hero">
+      <!-- LEFT -->
+      <div class="left">
+        <!-- KEEP H1 TEXT EXACTLY as original but with highlights -->
+        <h1 id="heroTitle">
+          Drama mạng xã hội – <span class="highlight-yellow">Hiện tượng</span> nhất thời hay <span class="highlight-red">Bản chất</span> xã hội?
+        </h1>
+        <p>Phân tích bằng lý thuyết Chủ nghĩa duy vật biện chứng – Triết học Mác – Lênin</p>
+
+        <div class="cta-wrap">
+          <button class="btn-cta" id="startBtn" onclick="document.querySelector('#part1').scrollIntoView({behavior:'smooth'})" aria-label="Bắt đầu phân tích">
+            <span class="icon">📖</span> <span>Bắt đầu phân tích</span>
+          </button>
+          <!-- optional secondary button (download / read script) -->
+          <a href="phuluc.html" style="align-self:center; color:var(--muted); font-weight:600; text-decoration:none;">Phụ lục & Nguồn</a>
+        </div>
+
+        <!-- Moved scroll-cue: left, below the CTA button -->
+        <div class="scroll-cue scroll-left" aria-hidden="true">
+          <button class="arrow" title="Cuộn xuống" onclick="document.querySelector('#part1').scrollIntoView({behavior:'smooth'})">↓</button>
+        </div>
+      </div>
+
+      <!-- RIGHT (SVG blob / illustration) -->
+      <div class="illustration" aria-hidden="true">
+        <!-- abstract multi-layer SVG blob representing social debate (kept) -->
+        <svg class="blob" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0" stop-color="#60a5fa" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#a78bfa" stop-opacity="0.95"/>
+            </linearGradient>
+            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="20" result="b"/>
+              <feBlend in="SourceGraphic" in2="b"/>
+            </filter>
+          </defs>
+
+          <g filter="url(#f1)">
+            <path d="M431.8,339.6C464.3,292.6,468.2,231.2,447.4,187.1C426.7,143,381.3,116.2,334.4,101.8C287.5,87.3,239.1,85.2,197.8,106.9C156.4,128.6,122.1,174.3,106.7,223.6C91.4,272.8,95,325.7,121,365.7C147.1,405.7,195.5,433,244.9,444.7C294.4,456.4,363.5,386.7,431.8,339.6Z" fill="url(#g1)"/>
+            <g transform="translate(20 20)" opacity="0.4">
+              <path d="M80 360c40-90 165-140 240-90s110 165 40 200-230 30-280-110z" fill="#7dd3fc"/>
+            </g>
+          </g>
+          <!-- small conversation bubbles -->
+          <g transform="translate(370,70)" opacity="0.95">
+            <rect x="6" y="8" rx="8" ry="8" width="90" height="46" fill="#0ea5e9"></rect>
+            <rect x="0" y="68" rx="10" ry="10" width="120" height="56" fill="#fde047"></rect>
+            <circle cx="24" cy="40" r="6" fill="#fff"></circle>
+            <circle cx="36" cy="40" r="6" fill="#fff"></circle>
+            <circle cx="48" cy="40" r="6" fill="#fff"></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+  <div class="page-hero" role="region" aria-label="Page hero">
+    <div style="flex:1"><h3>Cauhoi</h3><div class="breadcrumb">Trang Chủ › Cauhoi</div></div>
+  </div>
+
+
+  <!-- MAIN CONTENT: updated card texts only -->
+  <main>
+    
+      <div>
+        <section id="part1" class="card">
+          <h2>Quiz: Ai là người tiêu dùng thông minh?</h2>
+          <div id="quizRoot">
+
+            <div class="quiz-question card" data-index="0">
+              <h3>Câu 1: Hành động nào của người tiêu dùng thể hiện rõ nhất vai trò "điều khiển thị trường"?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q0" value="0"> Mua hàng theo trend</label></li>
+                <li><label><input type="radio" name="q0" value="1"> Chỉ mua khi giảm giá sâu</label></li>
+                <li><label><input type="radio" name="q0" value="2"> Quyết định mua sản phẩm của thương hiệu A thay vì B</label></li>
+                <li><label><input type="radio" name="q0" value="3"> Viết đánh giá tiêu cực</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(0)">Hiển thị đáp án</button>
+              <div id="answer0" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="1">
+              <h3>Câu 2: Thị trường sử dụng công cụ nào chủ yếu để dẫn dắt hành vi người tiêu dùng?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q1" value="0"> Tăng năng suất lao động</label></li>
+                <li><label><input type="radio" name="q1" value="1"> Giảm chi phí sản xuất</label></li>
+                <li><label><input type="radio" name="q1" value="2"> Tiếp thị, quảng cáo và xây dựng thương hiệu</label></li>
+                <li><label><input type="radio" name="q1" value="3"> Báo cáo tài chính minh bạch</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(1)">Hiển thị đáp án</button>
+              <div id="answer1" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="2">
+              <h3>Câu 3: "Tiêu dùng thông minh" thể hiện người tiêu dùng ở vị thế nào?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q2" value="0"> Bị thị trường điều khiển</label></li>
+                <li><label><input type="radio" name="q2" value="1"> Chủ động giành lại quyền điều khiển</label></li>
+                <li><label><input type="radio" name="q2" value="2"> Hoàn toàn điều khiển thị trường</label></li>
+                <li><label><input type="radio" name="q2" value="3"> Không quan tâm</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(2)">Hiển thị đáp án</button>
+              <div id="answer2" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="3">
+              <h3>Câu 4: Khi người tiêu dùng đồng loạt tẩy chay doanh nghiệp gây ô nhiễm, điều này chứng tỏ?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q3" value="0"> Bị thị trường điều khiển</label></li>
+                <li><label><input type="radio" name="q3" value="1"> Sức mạnh tập thể trừng phạt doanh nghiệp</label></li>
+                <li><label><input type="radio" name="q3" value="2"> Doanh nghiệp không cần người tiêu dùng</label></li>
+                <li><label><input type="radio" name="q3" value="3"> Giá sản phẩm tăng</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(3)">Hiển thị đáp án</button>
+              <div id="answer3" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="4">
+              <h3>Câu 5: Khi công ty tung sản phẩm hoàn toàn mới và tạo ra nhu cầu, đây là ví dụ cho thấy:</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q4" value="0"> Thị trường điều khiển bằng cách tạo nhu cầu</label></li>
+                <li><label><input type="radio" name="q4" value="1"> Người tiêu dùng đã yêu cầu</label></li>
+                <li><label><input type="radio" name="q4" value="2"> Chính phủ bắt buộc</label></li>
+                <li><label><input type="radio" name="q4" value="3"> Người tiêu dùng không quan tâm</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(4)">Hiển thị đáp án</button>
+              <div id="answer4" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="5">
+              <h3>Câu 6: Hiện tượng mua hàng theo xu hướng (FOMO) thường là biểu hiện của:</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q5" value="0"> Người tiêu dùng điều khiển</label></li>
+                <li><label><input type="radio" name="q5" value="1"> Người tiêu dùng bị tâm lý đám đông và quảng cáo điều khiển</label></li>
+                <li><label><input type="radio" name="q5" value="2"> Sản phẩm chất lượng tốt nhất</label></li>
+                <li><label><input type="radio" name="q5" value="3"> Thị trường khủng hoảng</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(5)">Hiển thị đáp án</button>
+              <div id="answer5" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="6">
+              <h3>Câu 7: Trong quy luật cung-cầu, yếu tố nào đại diện cho quyền lực của người tiêu dùng?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q6" value="0"> Cung</label></li>
+                <li><label><input type="radio" name="q6" value="1"> Cầu</label></li>
+                <li><label><input type="radio" name="q6" value="2"> Giá cả</label></li>
+                <li><label><input type="radio" name="q6" value="3"> Cạnh tranh</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(6)">Hiển thị đáp án</button>
+              <div id="answer6" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="7">
+              <h3>Câu 8: Cạnh tranh gay gắt giữa nhiều nhà sản xuất sẽ dẫn đến:</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q7" value="0"> Tăng quyền lực người tiêu dùng</label></li>
+                <li><label><input type="radio" name="q7" value="1"> Giảm quyền lực người tiêu dùng</label></li>
+                <li><label><input type="radio" name="q7" value="2"> Người tiêu dùng bị điều khiển hoàn toàn</label></li>
+                <li><label><input type="radio" name="q7" value="3"> Giá tăng vọt</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(7)">Hiển thị đáp án</button>
+              <div id="answer7" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="8">
+              <h3>Câu 9: Khi thị trường khan hiếm một mặt hàng, ai nắm quyền lớn hơn?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q8" value="0"> Người tiêu dùng</label></li>
+                <li><label><input type="radio" name="q8" value="1"> Người bán/thị trường</label></li>
+                <li><label><input type="radio" name="q8" value="2"> Cả hai không ai</label></li>
+                <li><label><input type="radio" name="q8" value="3"> Chính phủ</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(8)">Hiển thị đáp án</button>
+              <div id="answer8" class="answer hidden"></div>
+            </div>
+
+            <div class="quiz-question card" data-index="9">
+              <h3>Câu 10: Kết luận mô tả chính xác nhất mối quan hệ giữa người tiêu dùng và thị trường?</h3>
+              <ul class="options">
+                <li><label><input type="radio" name="q9" value="0"> Người tiêu dùng luôn bị động</label></li>
+                <li><label><input type="radio" name="q9" value="1"> Thị trường luôn bị động</label></li>
+                <li><label><input type="radio" name="q9" value="2"> Quan hệ tác động hai chiều: thị trường tạo xu hướng, người tiêu dùng quyết định thành bại</label></li>
+                <li><label><input type="radio" name="q9" value="3"> Hoạt động độc lập</label></li>
+              </ul>
+              <button class="reveal-btn" onclick="revealAnswer(9)">Hiển thị đáp án</button>
+              <div id="answer9" class="answer hidden"></div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <button onclick="submitQuiz()" style="padding:10px 14px;border-radius:8px;background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));color:#fff;border:none;">Nộp bài</button>
+              <div id="progress">Câu 0/10</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="part2" class="card">
+          <h2>Kết quả</h2>
+          <div id="finalResult" style="padding:12px;color:var(--text);"></div>
+        </section>
+      </div>
+
+
+      <!-- Right column: TOC -->
+      <aside class="toc" aria-label="Mục lục">
+        <h3>Mục lục</h3>
+        <ul>
+          <li><a href="lythuyet.html">1. Bản chất – Hiện tượng</a></li>
+          <li><a href="#part2">2. Nguyên nhân – Kết quả</a></li>
+          <li><a href="#part3">3. Tất nhiên – Ngẫu nhiên</a></li>
+          <li><a href="phantich.html">4. Drama mạng xã hội</a></li>
+          <li><a href="index.html#conclusion">5. Kết luận</a></li>
+          <li><a href="phuluc.html">Phụ lục</a></li>
+        </ul>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Footer (dark) -->
+  <footer class="site-footer">
+    &copy; 2025 Nhóm Triết học – Học viện Ngoại giao Việt Nam &mdash;
+    <a href="index.html">Trang Chủ</a> • <a href="phuluc.html">AI Usage</a>
+    <div style="margin-top:8px; color:var(--muted); font-size:0.9rem;">
+      Contact: nhóm Win • Cam kết liêm chính học thuật: AI chỉ hỗ trợ. 
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" title="Về đầu trang" aria-label="Về đầu trang">↑</button>
+
+  <script>
+    // Header shadow on scroll + backToTop display (kept)
+    const header = document.getElementById('siteHeader');
+    const backToTop = document.getElementById('backToTop');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    function onScroll(){
+      if(window.scrollY > 30){
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+
+      if(window.scrollY > 300){
+        backToTop.style.display = 'flex';
+      } else {
+        backToTop.style.display = 'none';
+      }
+
+      // highlight TOC active item
+      const sections = document.querySelectorAll('main section.card');
+      let currentId = '';
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if(rect.top <= 120 && rect.bottom > 120){ currentId = sec.id; }
+      });
+      document.querySelectorAll('aside.toc a').forEach(a => {
+        if(a.getAttribute('href') === '#' + currentId){
+          a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent-yellow');
+        } else {
+          a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--link');
+        }
+      });
+
+      // sync primary nav active link (text + underline + aria-current)
+      document.querySelectorAll('nav.primary a').forEach(a => {
+        const href = a.getAttribute('href');
+        if(href === '#' + currentId){
+          a.classList.add('active');
+          a.setAttribute('aria-current','page');
+        } else {
+          a.classList.remove('active');
+          a.removeAttribute('aria-current');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', onScroll);
+
+    // back to top
+    backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}) );
+
+    // Mobile menu toggle
+    function toggleMobile(open){
+      if(open === undefined) open = mobilePanel.style.display !== 'block';
+      if(open){
+        mobilePanel.style.display = 'block';
+        hamburgerBtn.setAttribute('aria-expanded','true');
+        mobilePanel.setAttribute('aria-hidden','false');
+      } else {
+        mobilePanel.style.display = 'none';
+        hamburgerBtn.setAttribute('aria-expanded','false');
+        mobilePanel.setAttribute('aria-hidden','true');
+      }
+    }
+    hamburgerBtn.addEventListener('click', ()=> toggleMobile() );
+
+    // START: New reveal + stagger logic (performance-friendly)
+    const cards = Array.from(document.querySelectorAll('section.card'));
+
+    // pre-assign animation variants so they persist
+    cards.forEach((card, idx) => {
+      const variant = (idx % 3 === 0) ? 'anim-up' : (idx % 3 === 1) ? 'anim-left' : 'anim-right';
+      card.classList.add(variant);
+      // hint for smoother animations
+      Array.from(card.children).forEach(ch => ch.style.willChange = 'opacity, transform');
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const card = entry.target;
+        if (entry.isIntersecting) {
+          // when section enters viewport -> show
+          card.classList.add('in-view');
+          // stagger children
+          const children = Array.from(card.children).filter(ch => ch.tagName && ch.tagName.toLowerCase() !== 'script');
+          children.forEach((ch, i) => {
+            ch.style.setProperty('--stagger', `${i * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))}s`);
+          });
+        } else {
+          // when section leaves viewport -> hide so it can animate again when re-entering
+          card.classList.remove('in-view');
+          // reset stagger so re-entry will reapply delays
+          Array.from(card.children).forEach(ch => ch.style.setProperty('--stagger', `0s`));
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // observe all cards
+    cards.forEach(c => revealObserver.observe(c));
+
+    // Close mobile panel when clicking outside on small screens
+    document.addEventListener('click', (ev)=>{
+      if(window.innerWidth <= 720){
+        if(!ev.target.closest('.hamburger') && !ev.target.closest('.mobile-panel')){
+          toggleMobile(false);
+        }
+      }
+    });
+
+    // ensure CTA scroll uses smooth behavior for older browsers
+    const startBtn = document.getElementById('startBtn');
+    if(startBtn) startBtn.addEventListener('click', function(e){
+      const s = document.querySelector('#part1');
+      if(s) s.scrollIntoView({behavior:'smooth'});
+    });
+    // END: New reveal logic
+
+  </script>
+
+<script>
+/* Minimal interactive helpers: toggleCollapse, poll vote, quiz reveal/submit */
+function toggleCollapse(id){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const showing = el.style.display !== 'none';
+  el.style.display = showing ? 'none' : 'block';
+  // also update aria-expanded on button
+  const btn = el.parentElement.querySelector('.collapse-toggle');
+  if(btn) btn.setAttribute('aria-expanded', String(!showing));
+}
+
+function vote(key){
+  // simple in-memory poll
+  window._poll = window._poll || {};
+  window._poll[key] = (window._poll[key]||0) + 1;
+  const total = Object.values(window._poll).reduce((a,b)=>a+b,0);
+  const parts = Object.entries(window._poll).map(([k,v])=>`${k}: ${v}`);
+  const el = document.getElementById('pollResult');
+  if(el) el.textContent = `Tổng ${total} phiếu — ` + parts.join(', ');
+}
+
+/* Quiz helpers */
+const QUIZ = {
+  answers: [2,2,1,1,0,1,1,0,1,2],
+  revealAnswer: function(i){
+    const ans = this.answers[i];
+    const options = document.querySelectorAll(`input[name="q${i}"]`);
+    const correctLabel = options[ans].parentElement;
+    const el = document.getElementById('answer'+i);
+    if(el){
+      el.textContent = 'Đáp án đúng: ' + correctLabel.textContent.trim();
+      el.classList.remove('hidden');
+    }
+    // update progress
+    const progress = document.getElementById('progress');
+    if(progress){
+      const answered = document.querySelectorAll('input[type=radio]:checked').length;
+      progress.textContent = `Câu ${answered}/10`;
+    }
+  },
+  submit: function(){
+    let score=0;
+    this.answers.forEach((a,i)=>{
+      const sel = document.querySelector('input[name="q'+i+'"]:checked');
+      if(sel && parseInt(sel.value)===a) score++;
+      // show answer
+      const el = document.getElementById('answer'+i);
+      if(el){
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        const correctLabel = options[a].parentElement;
+        el.textContent = 'Đáp án đúng: ' + correctLabel.textContent.trim();
+        el.classList.remove('hidden');
+      }
+    });
+    const final = document.getElementById('finalResult');
+    if(final){
+      final.innerHTML = `<strong>Bạn được ${score} / ${this.answers.length} điểm.</strong><br>Cảm ơn đã tham gia!`;
+      final.scrollIntoView({behavior:'smooth'});
+      // small popup
+      alert('Kết quả: ' + score + ' / ' + this.answers.length);
+    }
+  }
+};
+
+function revealAnswer(i){ QUIZ.revealAnswer(i); }
+function submitQuiz(){ QUIZ.submit(); }
+</script>
+
+  <script src="scripts/ui-enhance.js"></script>
+</body>
+</html>
