@@ -428,88 +428,126 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="app-header" id="siteHeader" role="banner">
-    <div class="brand" aria-hidden="false">
-      <div class="logo" aria-hidden="true">📘</div>
-      <div>
-        <div class="title">Thị trường & Người tiêu dùng</div>
-        <div class="subtitle">Phân tích học thuật · Kinh tế chính trị Mác–Lênin</div>
-      </div>
+<!-- HEADER -->
+<header class="app-header" id="siteHeader" role="banner">
+  <div class="brand" aria-hidden="false">
+    <div class="logo" aria-hidden="true">📘</div>
+    <div>
+      <div class="title">Thị trường & Người tiêu dùng</div>
+      <div class="subtitle">Phân tích học thuật · Kinh tế chính trị Mác–Lênin</div>
     </div>
-
-    <!-- Primary nav (desktop) -->
-    <nav class="primary" role="navigation" aria-label="Primary navigation">
-      <a href="index.html">Trang Chủ</a>
-      <a href="lythuyet.html">Lý thuyết</a>
-      <a href="phantich.html">Phân tích</a>
-      <a href="cauhoi.html">Quiz</a>
-      <a href="phuluc.html">Phụ lục</a>
-    </nav>
-
-    <!-- Hamburger (mobile) -->
-    <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobilePanel" aria-label="Mở menu">
-      <span class="bar"></span>
-    </button>
-  </header>
-
-  <!-- Mobile nav panel -->
-  <div class="mobile-panel" id="mobilePanel" role="dialog" aria-hidden="true">
-    <a href="index.html" onclick="toggleMobile(false)">Trang Chủ</a>
-    <a href="lythuyet.html" onclick="toggleMobile(false)">Lý thuyết</a>
-    <a href="phantich.html" onclick="toggleMobile(false)">Phân tích</a>
-    <a href="phuluc.html" onclick="toggleMobile(false)">Phụ lục</a>
   </div>
 
-  <!-- HERO -->
-  <section class="hero" id="hero" aria-labelledby="heroTitle">
-    <div class="bg-animation" aria-hidden="true"></div>
-  </section>
-  <main>
-    <div class="container">
+  <!-- Primary nav (desktop) -->
+  <nav class="primary" role="navigation" aria-label="Primary navigation">
+    <a href="index.html">Trang Chủ</a>
+    <a href="lythuyet.html">Lý thuyết</a>
+    <a href="phantich.html">Phân tích</a>
+    <a href="cauhoi.html">Quiz</a>
+    <a href="phuluc.html">Phụ lục</a>
+  </nav>
 
-      <div>
-        <section id="part1" class="card">
-          <h2>Phụ lục: AI Usage minh bạch & Cam kết</h2>
-          <h3>AI Usage minh bạch</h3>
-          <ul>
-            <li><b>Công cụ:</b> ChatGPT (OpenAI)</li>
-            <li><b>Mục đích:</b> Hỗ trợ tóm tắt lý thuyết, gợi ý ví dụ, thiết kế website.</li>
-            <li><b>Prompt chính:</b> “Trình bày tóm tắt lý thuyết Hàng hoá, thị trường và vai trò của các chủ thể tham gia thị trường + vận dụng phân tích chủ đề  Là người tiêu dùng, bạn đang bị thị trường điều khiển hay bạn đang điều khiển thị trường?.”</li>
-            <li><b>Kết quả:</b> Nội dung AI hỗ trợ đã được nhóm chỉnh sửa, kiểm chứng bằng Giáo trình LLCT & nguồn báo chính thống.</li>
-          </ul>
-          <h3>Cam kết liêm chính học thuật</h3>
-          <p>Chúng tôi cam kết AI chỉ đóng vai trò hỗ trợ, không thay thế toàn bộ quá trình học thuật.</p>
-        </section>
+  <!-- Hamburger (mobile) -->
+  <button class="hamburger" id="hamburgerBtn" aria-expanded="false" aria-controls="mobilePanel" aria-label="Mở menu">
+    <span class="bar"></span>
+  </button>
+</header>
 
-        <section id="part2" class="card">
-          <h2>Nguồn chính</h2>
-          <ul>
-            <li>Giáo trình kinh tế và chính trị Mác–Lênin, Chương 2: Hàng hoá, thị trường và vai trò của các chủ thể tham gia thị trường</li>
-            <li>VTV, Tuổi Trẻ (ví dụ minh họa)</li>
-          </ul>
-        </section>
-      </div>
+<!-- Mobile nav panel -->
+<div class="mobile-panel" id="mobilePanel" role="dialog" aria-hidden="true">
+  <a href="index.html" onclick="toggleMobile(false)">Trang Chủ</a>
+  <a href="lythuyet.html" onclick="toggleMobile(false)">Lý thuyết</a>
+  <a href="phantich.html" onclick="toggleMobile(false)">Phân tích</a>
+  <a href="phuluc.html" onclick="toggleMobile(false)">Phụ lục</a>
+</div>
 
-      <aside class="toc" aria-label="Mục lục">
-        <h3>Phụ Lục</h3>
+<!-- HERO -->
+<section class="hero" id="hero" aria-labelledby="heroTitle">
+  <div class="bg-animation" aria-hidden="true"></div>
+</section>
+
+<main>
+  <div class="container">
+
+    <div>
+
+      <!-- SECTION 1 -->
+      <section id="part1" class="card">
+        <h2>Phụ lục: Minh bạch sử dụng AI & Cam kết học thuật</h2>
+
+        <h3>1. Minh bạch sử dụng AI</h3>
         <ul>
-          <li><a href="#part1" onclick="event.preventDefault(); document.querySelector('#part1').scrollIntoView({behavior:'smooth'})">Phụ lục: AI Usage minh bạch & Cam kết</a></li>
-          <li><a href="#part2" onclick="event.preventDefault(); document.querySelector('#part2').scrollIntoView({behavior:'smooth'})">Nguồn chính</a></li>
+          <li><strong>Công cụ hỗ trợ:</strong> ChatGPT (OpenAI, GPT-5)</li>
+          <li><strong>Mục đích:</strong> Hỗ trợ biên tập nội dung, hệ thống hoá lý thuyết, gợi ý cấu trúc triển khai web và thiết kế câu hỏi quiz tương tác.</li>
+          <li><strong>Prompt trọng tâm:</strong>  
+            <em>“Trình bày khung lý luận Kinh tế chính trị Mác–Lênin – Chương 2 và vận dụng phân tích chủ đề: Người tiêu dùng bị thị trường dẫn dắt hay định hướng thị trường?”</em>
+          </li>
+          <li><strong>Nguyên tắc sử dụng:</strong> Nội dung do AI gợi ý được nhóm phân tích, chỉnh sửa, kiểm chứng và đối chiếu với giáo trình chính thức, tác phẩm kinh điển và báo chí chính thống trước khi công bố.</li>
         </ul>
-      </aside>
+
+        <h3>2. Cam kết liêm chính học thuật</h3>
+        <p>Nhóm <strong>WIN</strong> cam kết:</p>
+        <ul>
+          <li>AI chỉ đóng vai trò <strong>hỗ trợ kỹ thuật và gợi ý nội dung</strong>, không thay thế tư duy phản biện hay lập luận học thuật của nhóm.</li>
+          <li>Toàn bộ <strong>phân tích, ví dụ, đánh giá và kết luận</strong> do nhóm thực hiện và chịu trách nhiệm.</li>
+          <li>Quá trình sử dụng AI được công khai, có chọn lọc và kiểm chứng, tuân thủ chuẩn mực liêm chính học thuật của <strong>Học viện Ngoại giao Việt Nam</strong>.</li>
+        </ul>
+
+        <div style="
+  background: #f5f5f7;
+  border-left: 4px solid #4A90E2;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 15px;
+  color: #1a1a1a; /* Đã đổi màu chữ sang đen mềm để dễ đọc */
+  font-size: 0.97rem;
+  line-height: 1.6;
+  will-change: opacity, transform;
+  --stagger: 0.48s;
+">
+  📌 <em>Ghi chú:</em> Việc sử dụng AI trong sản phẩm học tập được kê khai minh bạch,
+  đảm bảo không thay thế tư duy phân tích và lập luận cá nhân.
+</div>
+
+      </section>
+
+      <!-- SECTION 2 -->
+      <section id="part2" class="card">
+        <h2>3. Danh mục nguồn tham khảo</h2>
+        <ul>
+          <li>Bộ Giáo dục & Đào tạo, <em>Giáo trình Kinh tế chính trị Mác–Lênin</em> — Chương 2.</li>
+          <li>C. Mác (1867), <a href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener"><em>Tư bản – Quyển I</em></a>.</li>
+          <li><a href="https://vtv.vn/viet-nam-tang-toc-chuyen-doi-so-huong-toi-nen-kinh-te-so-toan-dan-tu-chu-cong-nghe-100251011111344759.htm" target="_blank" rel="noopener">VTV News (2025): Việt Nam tăng tốc chuyển đổi số – Hướng tới nền kinh tế số toàn dân</a></li>
+          <li><a href="https://tuoitre.vn/nguoi-tieu-dung-thong-minh-thoi-40-chu-dong-bao-ve-truoc-rui-ro-20210825132309566.htm" target="_blank" rel="noopener">Tuổi Trẻ Online (2021): Người tiêu dùng thông minh thời 4.0</a></li>
+          <li><a href="https://mst.gov.vn/hoi-nghi-toan-quoc-quan-triet-va-trien-khai-thuc-hien-nghi-quyet-13-nqtw-ngay-02042022-cua-bo-chinh-tri-197153645.htm" target="_blank" rel="noopener">Nghị quyết 13-NQ/TW (2022): Chuyển đổi số & kinh tế tri thức</a></li>
+        </ul>
+      </section>
 
     </div>
-  </main>
 
-  <!-- Footer (dark) -->
-  <footer class="site-footer">
-    &copy; 2025 Nhóm Triết học – Học viện Ngoại giao Việt Nam &mdash;
-    <a href="index.html">Trang Chủ</a> • <a href="phuluc.html">AI Usage</a>
-    <div style="margin-top:8px; color:var(--muted); font-size:0.9rem;">
-      Contact: nhóm Win • Cam kết liêm chính học thuật: AI chỉ hỗ trợ. 
-    </div>
-  </footer>
+    <!-- TOC -->
+    <aside class="toc" aria-label="Mục lục">
+      <h3>Phụ Lục</h3>
+      <ul>
+        <li><a href="#part1" onclick="event.preventDefault(); document.querySelector('#part1').scrollIntoView({behavior:'smooth'})">Minh bạch AI & Cam kết</a></li>
+        <li><a href="#part2" onclick="event.preventDefault(); document.querySelector('#part2').scrollIntoView({behavior:'smooth'})">Nguồn tham khảo</a></li>
+      </ul>
+    </aside>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  &copy; 2025 Nhóm WIN – Học viện Ngoại giao Việt Nam   
+  &mdash; <a href="index.html">Trang Chủ</a> • <a href="phuluc.html">Phụ lục</a>
+
+  <div style="margin-top:8px; color:var(--muted); font-size:0.9rem;">
+    Cam kết liêm chính học thuật — AI chỉ hỗ trợ, không thay thế tư duy phân tích.
+  </div>
+</footer>
+
+
 
   <!-- Back to top -->
   <button id="backToTop" title="Về đầu trang" aria-label="Về đầu trang">↑</button>

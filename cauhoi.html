@@ -480,18 +480,16 @@
     <div class="hero-inner" role="region" aria-label="Hero">
       <!-- LEFT -->
       <div class="left">
-        <!-- KEEP H1 TEXT EXACTLY as original but with highlights -->
-        <h1 id="heroTitle">
-          Drama mạng xã hội – <span class="highlight-yellow">Hiện tượng</span> nhất thời hay <span class="highlight-red">Bản chất</span> xã hội?
-        </h1>
-        <p>Phân tích bằng lý thuyết Chủ nghĩa duy vật biện chứng – Triết học Mác – Lênin</p>
+        <h1 id="heroTitle">Người tiêu dùng đang <span class="highlight-yellow">bị thị trường dẫn dắt</span> hay <span class="highlight-red">định hướng thị trường</span>?</h1>
+        <p>Phân tích theo lý luận Kinh tế chính trị Mác–Lênin — Chương&nbsp;2</p>
 
         <div class="cta-wrap">
           <button class="btn-cta" id="startBtn" onclick="document.querySelector('#part1').scrollIntoView({behavior:'smooth'})" aria-label="Bắt đầu phân tích">
-            <span class="icon">📖</span> <span>Bắt đầu phân tích</span>
+            <span class="icon">🧠</span> <span>Bắt đầu làm Quiz</span>
           </button>
-          <!-- optional secondary button (download / read script) -->
-          <a href="phuluc.html" style="align-self:center; color:var(--muted); font-weight:600; text-decoration:none;">Phụ lục & Nguồn</a>
+<button class="btn-cta" onclick="window.location.href='phuluc.html'" aria-label="Phụ lục & Nguồn →">
+  	    <span class="icon">📎</span> <span>Phụ lục & Nguồn →</span>
+	  </button>
         </div>
 
         <!-- Moved scroll-cue: left, below the CTA button -->
@@ -554,7 +552,7 @@
                 <li><label><input type="radio" name="q0" value="2"> Quyết định mua sản phẩm của thương hiệu A thay vì B</label></li>
                 <li><label><input type="radio" name="q0" value="3"> Viết đánh giá tiêu cực</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(0)">Hiển thị đáp án</button>
+              
               <div id="answer0" class="answer hidden"></div>
             </div>
 
@@ -566,7 +564,7 @@
                 <li><label><input type="radio" name="q1" value="2"> Tiếp thị, quảng cáo và xây dựng thương hiệu</label></li>
                 <li><label><input type="radio" name="q1" value="3"> Báo cáo tài chính minh bạch</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(1)">Hiển thị đáp án</button>
+              
               <div id="answer1" class="answer hidden"></div>
             </div>
 
@@ -578,7 +576,7 @@
                 <li><label><input type="radio" name="q2" value="2"> Hoàn toàn điều khiển thị trường</label></li>
                 <li><label><input type="radio" name="q2" value="3"> Không quan tâm</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(2)">Hiển thị đáp án</button>
+              
               <div id="answer2" class="answer hidden"></div>
             </div>
 
@@ -590,7 +588,7 @@
                 <li><label><input type="radio" name="q3" value="2"> Doanh nghiệp không cần người tiêu dùng</label></li>
                 <li><label><input type="radio" name="q3" value="3"> Giá sản phẩm tăng</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(3)">Hiển thị đáp án</button>
+              
               <div id="answer3" class="answer hidden"></div>
             </div>
 
@@ -602,7 +600,7 @@
                 <li><label><input type="radio" name="q4" value="2"> Chính phủ bắt buộc</label></li>
                 <li><label><input type="radio" name="q4" value="3"> Người tiêu dùng không quan tâm</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(4)">Hiển thị đáp án</button>
+              
               <div id="answer4" class="answer hidden"></div>
             </div>
 
@@ -614,7 +612,7 @@
                 <li><label><input type="radio" name="q5" value="2"> Sản phẩm chất lượng tốt nhất</label></li>
                 <li><label><input type="radio" name="q5" value="3"> Thị trường khủng hoảng</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(5)">Hiển thị đáp án</button>
+              
               <div id="answer5" class="answer hidden"></div>
             </div>
 
@@ -626,7 +624,7 @@
                 <li><label><input type="radio" name="q6" value="2"> Giá cả</label></li>
                 <li><label><input type="radio" name="q6" value="3"> Cạnh tranh</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(6)">Hiển thị đáp án</button>
+              
               <div id="answer6" class="answer hidden"></div>
             </div>
 
@@ -638,7 +636,7 @@
                 <li><label><input type="radio" name="q7" value="2"> Người tiêu dùng bị điều khiển hoàn toàn</label></li>
                 <li><label><input type="radio" name="q7" value="3"> Giá tăng vọt</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(7)">Hiển thị đáp án</button>
+              
               <div id="answer7" class="answer hidden"></div>
             </div>
 
@@ -650,7 +648,7 @@
                 <li><label><input type="radio" name="q8" value="2"> Cả hai không ai</label></li>
                 <li><label><input type="radio" name="q8" value="3"> Chính phủ</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(8)">Hiển thị đáp án</button>
+              
               <div id="answer8" class="answer hidden"></div>
             </div>
 
@@ -662,7 +660,7 @@
                 <li><label><input type="radio" name="q9" value="2"> Quan hệ tác động hai chiều: thị trường tạo xu hướng, người tiêu dùng quyết định thành bại</label></li>
                 <li><label><input type="radio" name="q9" value="3"> Hoạt động độc lập</label></li>
               </ul>
-              <button class="reveal-btn" onclick="revealAnswer(9)">Hiển thị đáp án</button>
+              
               <div id="answer9" class="answer hidden"></div>
             </div>
 
@@ -678,21 +676,6 @@
           <div id="finalResult" style="padding:12px;color:var(--text);"></div>
         </section>
       </div>
-
-
-      <!-- Right column: TOC -->
-      <aside class="toc" aria-label="Mục lục">
-        <h3>Mục lục</h3>
-        <ul>
-          <li><a href="lythuyet.html">1. Bản chất – Hiện tượng</a></li>
-          <li><a href="#part2">2. Nguyên nhân – Kết quả</a></li>
-          <li><a href="#part3">3. Tất nhiên – Ngẫu nhiên</a></li>
-          <li><a href="phantich.html">4. Drama mạng xã hội</a></li>
-          <li><a href="index.html#conclusion">5. Kết luận</a></li>
-          <li><a href="phuluc.html">Phụ lục</a></li>
-        </ul>
-      </aside>
-
     </div>
   </main>
 
@@ -709,194 +692,175 @@
   <button id="backToTop" title="Về đầu trang" aria-label="Về đầu trang">↑</button>
 
   <script>
-    // Header shadow on scroll + backToTop display (kept)
-    const header = document.getElementById('siteHeader');
-    const backToTop = document.getElementById('backToTop');
-    const mobilePanel = document.getElementById('mobilePanel');
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
+// Header shadow on scroll + backToTop display (kept)
+const header = document.getElementById('siteHeader');
+const backToTop = document.getElementById('backToTop');
+const mobilePanel = document.getElementById('mobilePanel');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
 
-    function onScroll(){
-      if(window.scrollY > 30){
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+function onScroll() {
+  if(window.scrollY > 30){
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 
-      if(window.scrollY > 300){
-        backToTop.style.display = 'flex';
-      } else {
-        backToTop.style.display = 'none';
-      }
+  if(window.scrollY > 300){
+    backToTop.style.display = 'flex';
+  } else {
+    backToTop.style.display = 'none';
+  }
 
-      // highlight TOC active item
-      const sections = document.querySelectorAll('main section.card');
-      let currentId = '';
-      sections.forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        if(rect.top <= 120 && rect.bottom > 120){ currentId = sec.id; }
-      });
-      document.querySelectorAll('aside.toc a').forEach(a => {
-        if(a.getAttribute('href') === '#' + currentId){
-          a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent-yellow');
-        } else {
-          a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--link');
-        }
-      });
-
-      // sync primary nav active link (text + underline + aria-current)
-      document.querySelectorAll('nav.primary a').forEach(a => {
-        const href = a.getAttribute('href');
-        if(href === '#' + currentId){
-          a.classList.add('active');
-          a.setAttribute('aria-current','page');
-        } else {
-          a.classList.remove('active');
-          a.removeAttribute('aria-current');
-        }
-      });
+  // highlight TOC active item
+  const sections = document.querySelectorAll('main section.card');
+  let currentId = '';
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 120 && rect.bottom > 120) { currentId = sec.id; }
+  });
+  document.querySelectorAll('aside.toc a').forEach(a => {
+    if(a.getAttribute('href') === '#' + currentId){
+      a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent-yellow');
+    } else {
+      a.style.color = getComputedStyle(document.documentElement).getPropertyValue('--link');
     }
-    window.addEventListener('scroll', onScroll);
-    window.addEventListener('load', onScroll);
+  });
 
-    // back to top
-    backToTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}) );
-
-    // Mobile menu toggle
-    function toggleMobile(open){
-      if(open === undefined) open = mobilePanel.style.display !== 'block';
-      if(open){
-        mobilePanel.style.display = 'block';
-        hamburgerBtn.setAttribute('aria-expanded','true');
-        mobilePanel.setAttribute('aria-hidden','false');
-      } else {
-        mobilePanel.style.display = 'none';
-        hamburgerBtn.setAttribute('aria-expanded','false');
-        mobilePanel.setAttribute('aria-hidden','true');
-      }
+  // sync primary nav active link (text + underline + aria-current)
+  document.querySelectorAll('nav.primary a').forEach(a => {
+    const href = a.getAttribute('href');
+    if(href === '#' + currentId){
+      a.classList.add('active');
+      a.setAttribute('aria-current','page');
+    } else {
+      a.classList.remove('active');
+      a.removeAttribute('aria-current');
     }
-    hamburgerBtn.addEventListener('click', ()=> toggleMobile() );
+  });
+}
+window.addEventListener('scroll', onScroll);
+window.addEventListener('load', onScroll);
 
-    // START: New reveal + stagger logic (performance-friendly)
-    const cards = Array.from(document.querySelectorAll('section.card'));
+// back to top
+backToTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
 
-    // pre-assign animation variants so they persist
-    cards.forEach((card, idx) => {
-      const variant = (idx % 3 === 0) ? 'anim-up' : (idx % 3 === 1) ? 'anim-left' : 'anim-right';
-      card.classList.add(variant);
-      // hint for smoother animations
-      Array.from(card.children).forEach(ch => ch.style.willChange = 'opacity, transform');
-    });
+// Mobile menu toggle
+function toggleMobile(open) {
+  if(open === undefined) open = mobilePanel.style.display !== 'block';
+  if(open){
+    mobilePanel.style.display = 'block';
+    hamburgerBtn.setAttribute('aria-expanded','true');
+    mobilePanel.setAttribute('aria-hidden','false');
+  } else {
+    mobilePanel.style.display = 'none';
+    hamburgerBtn.setAttribute('aria-expanded','false');
+    mobilePanel.setAttribute('aria-hidden','true');
+  }
+}
+hamburgerBtn.addEventListener('click', () => toggleMobile());
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const card = entry.target;
-        if (entry.isIntersecting) {
-          // when section enters viewport -> show
-          card.classList.add('in-view');
-          // stagger children
-          const children = Array.from(card.children).filter(ch => ch.tagName && ch.tagName.toLowerCase() !== 'script');
-          children.forEach((ch, i) => {
-            ch.style.setProperty('--stagger', `${i * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))}s`);
-          });
-        } else {
-          // when section leaves viewport -> hide so it can animate again when re-entering
-          card.classList.remove('in-view');
-          // reset stagger so re-entry will reapply delays
-          Array.from(card.children).forEach(ch => ch.style.setProperty('--stagger', `0s`));
-        }
+// New reveal + stagger logic (performance-friendly)
+const cards = Array.from(document.querySelectorAll('section.card'));
+
+// Pre-assign animation variants so they persist
+cards.forEach((card, idx) => {
+  const variant = (idx % 3 === 0) ? 'anim-up' : (idx % 3 === 1) ? 'anim-left' : 'anim-right';
+  card.classList.add(variant);
+  // hint for smoother animations
+  Array.from(card.children).forEach(ch => ch.style.willChange = 'opacity, transform');
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const card = entry.target;
+    if (entry.isIntersecting) {
+      // when section enters viewport -> show
+      card.classList.add('in-view');
+      // stagger children
+      const children = Array.from(card.children).filter(ch => ch.tagName && ch.tagName.toLowerCase() !== 'script');
+      children.forEach((ch, i) => {
+        ch.style.setProperty('--stagger', `${i * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-step'))}s`);
       });
-    }, { threshold: 0.12 });
+    } else {
+      // when section leaves viewport -> hide so it can animate again when re-entering
+      card.classList.remove('in-view');
+      // reset stagger so re-entry will reapply delays
+      Array.from(card.children).forEach(ch => ch.style.setProperty('--stagger', `0s`));
+    }
+  });
+}, { threshold: 0.12 });
 
-    // observe all cards
-    cards.forEach(c => revealObserver.observe(c));
+// observe all cards
+cards.forEach(c => revealObserver.observe(c));
 
-    // Close mobile panel when clicking outside on small screens
-    document.addEventListener('click', (ev)=>{
-      if(window.innerWidth <= 720){
-        if(!ev.target.closest('.hamburger') && !ev.target.closest('.mobile-panel')){
-          toggleMobile(false);
-        }
-      }
-    });
+// Close mobile panel when clicking outside on small screens
+document.addEventListener('click', (ev) => {
+  if(window.innerWidth <= 720){
+    if(!ev.target.closest('.hamburger') && !ev.target.closest('.mobile-panel')){
+      toggleMobile(false);
+    }
+  }
+});
 
-    // ensure CTA scroll uses smooth behavior for older browsers
-    const startBtn = document.getElementById('startBtn');
-    if(startBtn) startBtn.addEventListener('click', function(e){
-      const s = document.querySelector('#part1');
-      if(s) s.scrollIntoView({behavior:'smooth'});
-    });
-    // END: New reveal logic
+// ensure CTA scroll uses smooth behavior for older browsers
+const startBtn = document.getElementById('startBtn');
+if(startBtn) startBtn.addEventListener('click', function(e) {
+  const s = document.querySelector('#part1');
+  if(s) s.scrollIntoView({behavior:'smooth'});
+});
 
-  </script>
-
-<script>
-/* Minimal interactive helpers: toggleCollapse, poll vote, quiz reveal/submit */
-function toggleCollapse(id){
-  const el = document.getElementById(id);
-  if(!el) return;
-  const showing = el.style.display !== 'none';
-  el.style.display = showing ? 'none' : 'block';
-  // also update aria-expanded on button
-  const btn = el.parentElement.querySelector('.collapse-toggle');
-  if(btn) btn.setAttribute('aria-expanded', String(!showing));
-}
-
-function vote(key){
-  // simple in-memory poll
-  window._poll = window._poll || {};
-  window._poll[key] = (window._poll[key]||0) + 1;
-  const total = Object.values(window._poll).reduce((a,b)=>a+b,0);
-  const parts = Object.entries(window._poll).map(([k,v])=>`${k}: ${v}`);
-  const el = document.getElementById('pollResult');
-  if(el) el.textContent = `Tổng ${total} phiếu — ` + parts.join(', ');
-}
-
-/* Quiz helpers */
+// QUIZ Logic (updated: reveal answers + explanations after submit)
 const QUIZ = {
-  answers: [2,2,1,1,0,1,1,0,1,2],
-  revealAnswer: function(i){
-    const ans = this.answers[i];
-    const options = document.querySelectorAll(`input[name="q${i}"]`);
-    const correctLabel = options[ans].parentElement;
-    const el = document.getElementById('answer'+i);
-    if(el){
-      el.textContent = 'Đáp án đúng: ' + correctLabel.textContent.trim();
-      el.classList.remove('hidden');
-    }
-    // update progress
-    const progress = document.getElementById('progress');
-    if(progress){
-      const answered = document.querySelectorAll('input[type=radio]:checked').length;
-      progress.textContent = `Câu ${answered}/10`;
-    }
-  },
-  submit: function(){
-    let score=0;
-    this.answers.forEach((a,i)=>{
-      const sel = document.querySelector('input[name="q'+i+'"]:checked');
-      if(sel && parseInt(sel.value)===a) score++;
-      // show answer
-      const el = document.getElementById('answer'+i);
-      if(el){
-        const options = document.querySelectorAll(`input[name="q${i}"]`);
-        const correctLabel = options[a].parentElement;
-        el.textContent = 'Đáp án đúng: ' + correctLabel.textContent.trim();
-        el.classList.remove('hidden');
-      }
+  // correct answers (index) and explanations
+  data: [
+    { ans: 2, exp: "Khi người tiêu dùng lựa chọn giữa các thương hiệu, họ điều khiển hướng vận động của cung thị trường." },
+    { ans: 2, exp: "Thị trường sử dụng quảng cáo và thương hiệu để dẫn dắt hành vi tiêu dùng, không phải yếu tố sản xuất." },
+    { ans: 1, exp: "Tiêu dùng thông minh nghĩa là chủ động, không để bị thị trường thao túng." },
+    { ans: 1, exp: "Tẩy chay tập thể thể hiện sức mạnh xã hội của người tiêu dùng trong định hướng doanh nghiệp." },
+    { ans: 0, exp: "Khi công ty tạo ra nhu cầu mới, đó là biểu hiện thị trường định hướng hành vi tiêu dùng." },
+    { ans: 1, exp: "FOMO là ví dụ điển hình về tâm lý đám đông bị quảng cáo dẫn dắt." },
+    { ans: 1, exp: "Cầu thể hiện sức mua và quyền lực lựa chọn của người tiêu dùng." },
+    { ans: 0, exp: "Cạnh tranh giữa nhiều doanh nghiệp làm tăng quyền lựa chọn của người tiêu dùng." },
+    { ans: 1, exp: "Khi hàng khan hiếm, người bán nắm quyền định giá cao hơn." },
+    { ans: 2, exp: "Mối quan hệ là tác động hai chiều: thị trường định hướng, nhưng người tiêu dùng quyết định thành bại." }
+  ],
+
+  submit: function() {
+    let score = 0;
+    this.data.forEach((q, i) => {
+      const sel = document.querySelector(`input[name='q${i}']:checked`);
+      const ansEl = document.getElementById(`answer${i}`);
+      const opts = document.querySelectorAll(`input[name='q${i}']`);
+      const correctText = opts[q.ans].parentElement.textContent.trim();
+
+      if (sel && parseInt(sel.value) === q.ans) score++;
+
+      ansEl.innerHTML = `
+        <div><strong>Đáp án đúng:</strong> ${correctText}</div>
+        <div style="margin-top:6px; color: var(--muted); font-size:0.95rem;">
+          <em>Giải thích:</em> ${q.exp}
+        </div>`;
+      ansEl.classList.remove("hidden");
     });
-    const final = document.getElementById('finalResult');
-    if(final){
-      final.innerHTML = `<strong>Bạn được ${score} / ${this.answers.length} điểm.</strong><br>Cảm ơn đã tham gia!`;
-      final.scrollIntoView({behavior:'smooth'});
-      // small popup
-      alert('Kết quả: ' + score + ' / ' + this.answers.length);
+
+    const final = document.getElementById("finalResult");
+    if (final) {
+      let msg = "";
+      if (score === this.data.length) msg = "🎉 Xuất sắc! Bạn là người tiêu dùng thông minh.";
+      else if (score >= 7) msg = "👏 Rất tốt! Bạn hiểu rõ thị trường và quyền lực tiêu dùng.";
+      else msg = "💡 Hãy đọc lại phần lý thuyết để hiểu sâu hơn về vai trò người tiêu dùng.";
+      
+      final.innerHTML = `<strong>Bạn đúng ${score}/${this.data.length} câu.</strong><br>${msg}`;
+      final.scrollIntoView({ behavior: "smooth" });
     }
   }
 };
 
-function revealAnswer(i){ QUIZ.revealAnswer(i); }
-function submitQuiz(){ QUIZ.submit(); }
+function submitQuiz() { QUIZ.submit(); }
+
+
 </script>
+
 
   <script src="scripts/ui-enhance.js"></script>
 </body>

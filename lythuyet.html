@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title> thị trường &amp; người tiêu dùng – Hiện tượng nhất thời hay bản chất xã hội?</title>
+  <title>Chương 2 – Hàng hóa, Thị trường và các chủ thể tham gia</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
 
   <style>
@@ -303,6 +302,7 @@
       box-shadow: 0 10px 30px rgba(2,6,23,0.6);
       border: 1px solid rgba(255,255,255,0.03);
       transition: transform .18s ease, box-shadow .18s ease;
+      margin-bottom: 24px; /* Added margin for spacing */
     }
     section.card:hover{ transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 45px rgba(2,6,23,0.72); }
 
@@ -314,6 +314,17 @@
       display:flex;
       align-items:center;
       gap:10px;
+    }
+    
+    /* Added styles for definition lists */
+    section.card ul, section.card ol {
+        padding-left: 20px;
+    }
+    section.card ul li {
+        margin-bottom: 8px;
+    }
+    section.card strong {
+        color: var(--accent-yellow);
     }
 
     .example {
@@ -441,6 +452,7 @@
       <a href="index.html">Trang Chủ</a>
       <a href="lythuyet.html">Lý thuyết</a>
       <a href="phantich.html">Phân tích</a>
+      <a href="cauhoi.html">Quiz</a>
       <a href="phuluc.html">Phụ lục</a>
     </nav>
 
@@ -459,12 +471,12 @@
   <section class="hero" id="hero" aria-labelledby="heroTitle">
     <div class="hero-inner">
       <div class="left" role="region" aria-label="hero content">
-        <div class="breadcrumb">Khung lý thuyết — Chương 2 Kinh tế chính trị Mác–Lênin</div>
-        <h1 id="heroTitle">Khung Lý thuyết về Hàng hoá, Giá trị và Thị trường</h1>
-        <p>Trang này hệ thống hoá những khái niệm cốt lõi trong phân tích Kinh tế chính trị: hàng hoá, giá trị, quan hệ sản xuất và vai trò người tiêu dùng, đồng thời liên hệ tới bối cảnh kinh tế số hiện đại.</p>
+        <div class="breadcrumb">Lý thuyết Chương 2</div>
+        <h1 id="heroTitle">Hàng hóa, Thị trường và các chủ thể tham gia</h1>
+        <p>Hệ thống hoá lý thuyết về thị trường, các quy luật kinh tế và vai trò của các chủ thể tham gia theo nội dung chương 2.</p>
 
         <div class="cta-wrap">
-          <button class="btn-cta" id="startBtn" onclick="document.querySelector('#intro').scrollIntoView({behavior:'smooth'})" aria-label="Bắt đầu khám phá">
+          <button class="btn-cta" id="startBtn" onclick="document.querySelector('#sec1').scrollIntoView({behavior:'smooth'})" aria-label="Bắt đầu khám phá">
             <span class="icon">📚</span> <span>Bắt đầu khám phá</span>
           </button>
         </div>
@@ -493,97 +505,118 @@
   <main>
     <div class="container" role="main">
       <div>
-        <a id="intro"></a>
-        <section id="intro" class="card" aria-labelledby="introTitle">
-          <h2 id="introTitle">Khung lý luận — Chương 2 Kinh tế chính trị Mác–Lênin</h2>
-          <p>Chương này làm rõ cơ chế hình thành giá trị, vai trò lao động và quan hệ xã hội trong sản xuất — từ đó lý giải sự vận hành của thị trường hiện đại trong điều kiện số hoá.</p>
-          <p>Dựa trên tư tưởng của <i>C.Mác</i> và <i>V.I. Lênin</i>, các khái niệm nền tảng được hệ thống hoá để hiểu mối quan hệ giữa hàng hoá, giá trị, lực lượng sản xuất, quan hệ sản xuất và vai trò người tiêu dùng.</p>
-        </section>
-
-        <a id="goods-value"></a>
+        
+        <a id="market-concept"></a>
         <section id="sec1" class="card" aria-labelledby="sec1Title">
-          <h2 id="sec1Title">1) Hàng hoá, giá trị sử dụng và giá trị trao đổi</h2>
-          <p>Hàng hoá mang hai thuộc tính:</p>
+          <h2 id="sec1Title">1.1. Khái niệm và bản chất của Thị trường</h2>
+          <p>Thị trường là tổng hòa các quan hệ kinh tế phát sinh trong quá trình sản xuất, trao đổi, phân phối và tiêu dùng hàng hóa, trong đó giá cả và số lượng hàng hóa – dịch vụ được xác định thông qua mối quan hệ cung – cầu.</p>
+          <p><b>Bản chất:</b> là một cơ chế tự điều tiết trong nền kinh tế hàng hóa, vận hành dựa trên các quy luật khách quan (giá trị, cung – cầu, cạnh tranh).</p>
+          
+          <p><strong>Các quan hệ cơ bản trong thị trường:</strong></p>
           <ul>
-            <li><b>Giá trị sử dụng:</b> công dụng, khả năng thoả mãn nhu cầu</li>
-            <li><b>Giá trị trao đổi:</b> biểu hiện lao động xã hội cần thiết tạo ra hàng hoá</li>
+            <li>Quan hệ cung – cầu: giữa người bán (bên cung) và người mua (bên cầu).</li>
+            <li>Quan hệ giá cả: biểu hiện bằng tiền của giá trị hàng hóa.</li>
+            <li>Quan hệ hàng – tiền: phản ánh sự trao đổi giá trị.</li>
+            <li>Quan hệ hợp tác – cạnh tranh: các chủ thể cùng tồn tại và ganh đua vì lợi ích kinh tế.</li>
           </ul>
-          <p>Điểm then chốt của Mác: hàng hoá vừa hữu dụng, vừa phản ánh quan hệ xã hội thông qua lao động kết tinh.</p>
-          <div class="callout">
-            <div class="title">Tư duy quan trọng</div>
-            <div>Giá trị xuất hiện thông qua trao đổi — không trao đổi, không giá trị kinh tế.</div>
-          </div>
-          <p><b>Ví dụ</b>: Ứng dụng miễn phí có giá trị sử dụng cho người dùng; giá trị trao đổi hình thành dựa vào dữ liệu người dùng và khả năng sinh lợi.</p>
+          <p><strong>Phân loại thị trường:</strong></p>
+          <ul>
+            <li>Theo đối tượng: hàng hóa, dịch vụ.</li>
+            <li>Theo phạm vi: trong nước, quốc tế.</li>
+            <li>Theo vai trò: tư liệu sản xuất, tư liệu tiêu dùng.</li>
+            <li>Theo cơ chế: thị trường tự do, thị trường có điều tiết; thị trường cạnh tranh hoàn hảo hoặc không hoàn hảo.</li>
+          </ul>
         </section>
 
-        <a id="surplus-value"></a>
+        <a id="market-role"></a>
         <section id="sec2" class="card" aria-labelledby="sec2Title">
-          <h2 id="sec2Title">2) Lao động, giá trị và giá trị thặng dư</h2>
-          <p>Lao động tạo ra giá trị. Giá trị thặng dư xuất hiện khi người lao động tạo ra giá trị lớn hơn giá trị sức lao động của chính họ.</p>
-          <p>Đây là nguồn gốc lợi nhuận trong kinh tế tư bản chủ nghĩa.</p>
-          <div class="callout">
-            <div class="title">Công thức</div>
-            <div>Sức lao động → Sản phẩm → Giá trị tổng → (Tiền lương + Giá trị thặng dư)</div>
-          </div>
-          <p><b>Ví dụ kinh tế số</b>: Nền tảng mạng xã hội tận dụng nội dung người dùng miễn phí để tạo doanh thu quảng cáo.</p>
-          <i>Gợi ý đọc:</i> C.Mác – 
-		<a href="https://www.marxists.org/archive/marx/works/1867-c1/" target="_blank" rel="noopener noreferrer">
-  		<i>Tư bản</i>
-		</a>, Quyển I (1867)
-
+          <h2 id="sec2Title">1.2. Vai trò của Thị trường trong nền kinh tế</h2>
+          <p>Thị trường đóng vai trò trung tâm trong việc kết nối và điều tiết nền kinh tế thông qua các chức năng:</p>
+          <ul>
+            <li><b>Thực hiện giá trị:</b> Hàng hóa chỉ trở thành sản phẩm xã hội khi được bán, tức là thực hiện giá trị trên thị trường.</li>
+            <li><b>Cầu nối:</b> Thị trường là cầu nối giữa sản xuất và tiêu dùng, phản ánh sự cân đối giữa cung và cầu, giúp sản xuất phù hợp hơn với nhu cầu xã hội.</li>
+            <li><b>Cung cấp thông tin:</b> Giá cả, số lượng và nhu cầu hàng hóa giúp nhà sản xuất quyết định “sản xuất cái gì, cho ai, và bằng cách nào”.</li>
+            <li><b>Phân bổ nguồn lực:</b> Thị trường hướng dòng vốn, lao động, và tài nguyên đến nơi đem lại lợi ích cao nhất.</li>
+            <li><b>Kích thích sáng tạo:</b> Các doanh nghiệp phải liên tục đổi mới để tồn tại, thúc đẩy tiến bộ kỹ thuật và năng suất lao động.</li>
+            <li><b>Gắn kết kinh tế:</b> Thị trường trong nước liên kết với thị trường quốc tế, hình thành nền kinh tế mở và hội nhập toàn cầu.</li>
+          </ul>
         </section>
 
-        <a id="forces-relations"></a>
+        <a id="market-economy"></a>
         <section id="sec3" class="card" aria-labelledby="sec3Title">
-          <h2 id="sec3Title">3) Lực lượng sản xuất &amp; quan hệ sản xuất</h2>
-          <p>Lực lượng sản xuất (công nghệ, kỹ năng, tri thức) phát triển → tạo áp lực buộc quan hệ sản xuất phải điều chỉnh.</p>
-          <p>Nếu quan hệ sản xuất kìm hãm lực lượng sản xuất → hình thành mâu thuẫn xã hội.</p>
-          <p><b>Ví dụ kinh tế số:</b> AI &amp; tự động hoá thay đổi cấu trúc lao động → yêu cầu điều chỉnh chính sách lao động và sở hữu dữ liệu.</p>
+          <h2 id="sec3Title">1.3. Nền kinh tế thị trường – đặc trưng và vai trò</h2>
+          <p><b>Khái niệm:</b> Là nền kinh tế hàng hóa phát triển cao, trong đó các yếu tố sản xuất, phân phối, trao đổi và tiêu dùng đều vận hành theo cơ chế thị trường, chịu tác động của các quy luật kinh tế khách quan.</p>
+          
+          <p><strong>Đặc trưng chủ yếu:</strong></p>
+          <ul>
+            <li>Đa dạng chủ thể và hình thức sở hữu: gồm nhà nước, tư nhân, tập thể, cá nhân… cùng tham gia, bình đẳng trước pháp luật.</li>
+            <li>Giá cả hình thành theo cung – cầu: giá phản ánh sự khan hiếm tương đối của hàng hóa.</li>
+            <li>Thị trường giữ vai trò trung tâm trong phân bổ nguồn lực: thông qua lợi nhuận, giá cả và tín hiệu cầu.</li>
+            <li>Tính mở và hội nhập quốc tế: thị trường trong nước gắn bó chặt chẽ với thị trường thế giới.</li>
+          </ul>
+          
+          <p><strong>Ưu thế:</strong> tạo động lực mạnh cho sáng tạo, phát huy tối đa tiềm năng, nâng cao năng suất, thỏa mãn nhu cầu đa dạng.</p>
+          <p><strong>Khuyết tật:</strong> tiềm ẩn khủng hoảng, phân hóa giàu nghèo, cạn kiệt tài nguyên, ô nhiễm môi trường.</p>
         </section>
 
-        <a id="value-law"></a>
+        <a id="economic-laws"></a>
         <section id="sec4" class="card" aria-labelledby="sec4Title">
-          <h2 id="sec4Title">4) Quy luật giá trị và giá cả thị trường</h2>
-          <p>Quy luật giá trị chi phối trao đổi hàng hoá theo lao động xã hội cần thiết.</p>
-          <p>Giá cả thị trường dao động quanh giá trị do cạnh tranh, cung–cầu, thông tin và quyền lực thị trường.</p>
-          <p><b>Ví dụ:</b> Thuật toán phân phối hiển thị sản phẩm có thể điều hướng nhu cầu → làm biến động giá trong ngắn hạn.</p>
+          <h2 id="sec4Title">1.4. Các quy luật kinh tế chủ yếu</h2>
+          <p>Hoạt động của thị trường được chi phối bởi các quy luật khách quan:</p>
+          <ul>
+            <li>
+              <strong>Quy luật giá trị:</strong> Yêu cầu việc sản xuất và trao đổi hàng hóa phải dựa trên hao phí lao động xã hội cần thiết.
+              <br><i>Tác động:</i> Giá cả xoay quanh giá trị; buộc người sản xuất cải tiến kỹ thuật; tạo sự phân hóa tự nhiên.
+            </li>
+            <li>
+              <strong>Quy luật cung – cầu:</strong> Điều tiết mối quan hệ giữa bên cung (người bán) và bên cầu (người mua).
+              <br><i>Tác động:</i> Cung vượt cầu → giá giảm; cầu vượt cung → giá tăng. Giúp điều tiết sản xuất và lưu thông.
+            </li>
+            <li>
+              <strong>Quy luật lưu thông tiền tệ:</strong> Yêu cầu lượng tiền trong lưu thông phải phù hợp với tổng giá trị hàng hóa và tốc độ lưu thông.
+              <br><i>Tác động:</i> Nếu lượng tiền > nhu cầu → lạm phát; nếu < nhu cầu → đình trệ sản xuất.
+            </li>
+            <li>
+              <strong>Quy luật cạnh tranh:</strong> Mối quan hệ ganh đua kinh tế giữa các chủ thể nhằm đạt lợi ích tối đa.
+              <br><i>Tác động:</i> Thúc đẩy đổi mới, nâng cao năng suất; (tiêu cực) có thể dẫn đến độc quyền, gian lận.
+            </li>
+          </ul>
         </section>
 
-        <a id="consumer-power"></a>
+        <a id="market-participants"></a>
         <section id="sec5" class="card" aria-labelledby="sec5Title">
-          <h2 id="sec5Title">5) Vai trò người tiêu dùng</h2>
-          <p>Người tiêu dùng không chỉ là đối tượng mua — họ đóng góp dữ liệu, phản hồi và giá trị nội dung.</p>
-          <p>Quyền lực người tiêu dùng phụ thuộc vào thông tin, lựa chọn thay thế và khả năng tác động đến nhà cung cấp.</p>
-          <p><b>Ví dụ:</b> Người dùng đánh giá, bình chọn, tẩy chay sản phẩm hoặc dịch vụ → ảnh hưởng thị trường.</p>
+          <h2 id="sec5Title">1.5. Các chủ thể tham gia thị trường</h2>
+          <p>Thị trường bao gồm nhiều chủ thể tương tác lẫn nhau:</p>
+          <ul>
+            <li>
+              <strong>Người sản xuất:</strong> Là cá nhân/tổ chức trực tiếp tạo ra hàng hóa, dịch vụ.
+              <br><i>Mục tiêu:</i> tối đa hóa lợi nhuận; quyết định lượng cung trên thị trường.
+            </li>
+            <li>
+              <strong>Người tiêu dùng:</strong> Là cá nhân/tổ chức mua và sử dụng hàng hóa, dịch vụ.
+              <br><i>Vai trò:</i> quyết định quy mô cầu, ảnh hưởng đến cơ cấu sản xuất. Sức mua và thị hiếu là động lực điều chỉnh cung.
+            </li>
+            <li>
+              <strong>Chủ thể trung gian:</strong> Bao gồm các tổ chức phân phối, bán lẻ, logistic, tài chính, quảng cáo…
+              <br><i>Vai trò:</i> cầu nối giữa cung và cầu, bảo đảm luồng hàng – tiền thông suốt.
+            </li>
+            <li>
+              <strong>Nhà nước:</strong> Là chủ thể đặc biệt, vừa tham gia vừa quản lý.
+              <br><i>Vai trò:</i> điều tiết vĩ mô (ban hành luật pháp, kiểm soát độc quyền, thuế, chính sách xã hội) nhằm bảo đảm công bằng và khắc phục khuyết tật thị trường.
+            </li>
+          </ul>
         </section>
 
-        <a id="digital-value"></a>
-        <section id="sec6" class="card" aria-labelledby="sec6Title">
-          <h2 id="sec6Title">6) Dữ liệu &amp; giá trị trong kinh tế số</h2>
-          <p>Dữ liệu người dùng trở thành yếu tố sản xuất mới.</p>
-          <p>Giá trị hình thành qua thu thập dữ liệu → phân tích → thương mại hoá.</p>
-          <p><b>Ví dụ hiện đại:</b><br>• TikTok kiểm soát chuỗi: traffic → thanh toán → logistics<br>• Shopee định giá vị trí hiển thị dựa trên dữ liệu hành vi người dùng</p>
-        </section>
-
-        <a id="summary"></a>
-        <section id="conclusion" class="card" aria-labelledby="conclusionTitle">
-          <h2 id="conclusionTitle">Kết luận tóm tắt</h2>
-          <p>Khung lý luận Mác–Lênin giúp giải thích động lực giá trị, quyền lực thị trường và sự chuyển biến quan hệ sản xuất trong thời đại dữ liệu & nền tảng số.</p>
-          <p>Hiểu rõ cơ chế này hỗ trợ đánh giá vai trò người tiêu dùng và xây dựng chính sách phát triển bền vững.</p>
-        </section>
       </div>
 
       <aside class="toc" aria-label="Mục lục">
         <h3>Mục lục</h3>
         <ul>
-          <li><a href="#intro" onclick="event.preventDefault(); document.querySelector('#intro').scrollIntoView({behavior:'smooth'})">Giới thiệu</a></li>
-          <li><a href="#goods-value" onclick="event.preventDefault(); document.querySelector('#goods-value').scrollIntoView({behavior:'smooth'})">Hàng hoá & Giá trị</a></li>
-          <li><a href="#surplus-value" onclick="event.preventDefault(); document.querySelector('#surplus-value').scrollIntoView({behavior:'smooth'})">Giá trị thặng dư</a></li>
-          <li><a href="#forces-relations" onclick="event.preventDefault(); document.querySelector('#forces-relations').scrollIntoView({behavior:'smooth'})">Lực lượng & Quan hệ sản xuất</a></li>
-          <li><a href="#value-law" onclick="event.preventDefault(); document.querySelector('#value-law').scrollIntoView({behavior:'smooth'})">Quy luật giá trị & Giá cả</a></li>
-          <li><a href="#consumer-power" onclick="event.preventDefault(); document.querySelector('#consumer-power').scrollIntoView({behavior:'smooth'})">Vai trò người tiêu dùng</a></li>
-          <li><a href="#digital-value" onclick="event.preventDefault(); document.querySelector('#digital-value').scrollIntoView({behavior:'smooth'})">Dữ liệu & Kinh tế số</a></li>
-          <li><a href="#summary" onclick="event.preventDefault(); document.querySelector('#summary').scrollIntoView({behavior:'smooth'})">Kết luận</a></li>
+          <li><a href="#market-concept" onclick="event.preventDefault(); document.querySelector('#sec1').scrollIntoView({behavior:'smooth'})">1.1. Khái niệm & Bản chất</a></li>
+          <li><a href="#market-role" onclick="event.preventDefault(); document.querySelector('#sec2').scrollIntoView({behavior:'smooth'})">1.2. Vai trò thị trường</a></li>
+          <li><a href="#market-economy" onclick="event.preventDefault(); document.querySelector('#sec3').scrollIntoView({behavior:'smooth'})">1.3. Nền kinh tế thị trường</a></li>
+          <li><a href="#economic-laws" onclick="event.preventDefault(); document.querySelector('#sec4').scrollIntoView({behavior:'smooth'})">1.4. Các quy luật kinh tế</a></li>
+          <li><a href="#market-participants" onclick="event.preventDefault(); document.querySelector('#sec5').scrollIntoView({behavior:'smooth'})">1.5. Các chủ thể</a></li>
         </ul>
       </aside>
     </div>
@@ -602,7 +635,6 @@
   <script>
 /* =======================
    Scroll-spy + TOC highlight fix
-   Supports dual-IDs (secX + semantic anchors)
    ======================= */
 
 const header     = document.getElementById('siteHeader');
@@ -610,16 +642,18 @@ const backToTop  = document.getElementById('backToTop');
 const mobilePanel = document.getElementById('mobilePanel');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 
-/* map old section ids → new semantic ids */
+/* Map section IDs (e.g., 'sec1') to their semantic anchor names (e.g., 'market-role').
+  The scroll-spy finds the section.id, and we use this map to highlight the
+  TOC link that has the matching anchor name in its 'href'.
+*/
 const anchorMap = {
-  sec1: "goods-value",
-  sec2: "surplus-value",
-  sec3: "forces-relations",
-  sec4: "value-law",
-  sec5: "consumer-power",
-  sec6: "digital-value",
-  conclusion: "summary"
+  sec1: "market-concept",
+  sec2: "market-role",
+  sec3: "market-economy",
+  sec4: "economic-laws",
+  sec5: "market-participants"
 };
+
 
 /* utility: get the canonical anchor id for highlight */
 function resolveAnchor(id){
@@ -632,19 +666,20 @@ function onScroll(){
   header.classList.toggle('scrolled', window.scrollY > 30);
   backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
 
-  // determine active section by old IDs
+  // determine active section by visible card IDs
   const sections = document.querySelectorAll('main section.card');
   let current = "";
 
   sections.forEach(sec => {
     const r = sec.getBoundingClientRect();
     if(r.top <= 120 && r.bottom > 120){
-      current = resolveAnchor(sec.id);
+      current = resolveAnchor(sec.id); // Use the map to find the anchor name
     }
   });
 
   // highlight TOC
   document.querySelectorAll('aside.toc a').forEach(a => {
+    // Check if the link's href matches the current anchor name
     const match = a.getAttribute('href') === `#${current}`;
     a.style.color = match
       ? getComputedStyle(document.documentElement).getPropertyValue('--accent-yellow')
@@ -711,6 +746,7 @@ cards.forEach(c=> revealObserver.observe(c));
 /* CTA → first theory section */
 const startBtn = document.getElementById('startBtn');
 if(startBtn){
+  // Updated to scroll to sec1, which is the first card
   startBtn.onclick = ()=> {
     document.querySelector('#sec1').scrollIntoView({behavior:'smooth'});
   };
